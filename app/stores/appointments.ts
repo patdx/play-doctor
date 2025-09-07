@@ -11,7 +11,18 @@ interface AppointmentStore {
 	getAppointmentsByDate: (date: Date) => Appointment[]
 	getAppointmentsByPatient: (patientId: string) => Appointment[]
 	getAppointmentsByStatus: (status: Appointment['status']) => Appointment[]
+	checkInPatient: (id: string) => void
+	startTreatment: (id: string) => void
+	completeAppointment: (id: string) => void
+	cancelAppointment: (id: string) => void
+	getTodayAppointments: () => Appointment[]
+	getReadyForTreatment: () => Appointment[]
 	clearAllAppointments: () => void
+}
+
+// Utility function to safely convert date to Date object
+const safeDate = (date: Date | string): Date => {
+	return date instanceof Date ? date : new Date(date)
 }
 
 export const useAppointmentsStore = create<AppointmentStore>()(
@@ -44,9 +55,9 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				get().appointments.find((appointment) => appointment.id === id),
 
 			getAppointmentsByDate: (date) => {
-				const targetDate = date.toDateString()
+				const targetDate = safeDate(date).toDateString()
 				return get().appointments.filter(
-					(appointment) => appointment.date.toDateString() === targetDate,
+					(appointment) => safeDate(appointment.date).toDateString() === targetDate,
 				)
 			},
 
@@ -59,6 +70,58 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				get().appointments.filter(
 					(appointment) => appointment.status === status,
 				),
+
+			checkInPatient: (id) =>
+				set((state) => ({
+					appointments: state.appointments.map((appointment) =>
+						appointment.id === id
+							? { ...appointment, status: 'checked-in' as const }
+							: appointment,
+					),
+				})),
+
+			startTreatment: (id) =>
+				set((state) => ({
+					appointments: state.appointments.map((appointment) =>
+						appointment.id === id
+							? { ...appointment, status: 'in-progress' as const }
+							: appointment,
+					),
+				})),
+
+			completeAppointment: (id) =>
+				set((state) => ({
+					appointments: state.appointments.map((appointment) =>
+						appointment.id === id
+							? { ...appointment, status: 'completed' as const }
+							: appointment,
+					),
+				})),
+
+			cancelAppointment: (id) =>
+				set((state) => ({
+					appointments: state.appointments.map((appointment) =>
+						appointment.id === id
+							? { ...appointment, status: 'cancelled' as const }
+							: appointment,
+					),
+				})),
+
+			getTodayAppointments: () => {
+				const today = new Date()
+				return get().appointments.filter(
+					(appointment) => safeDate(appointment.date).toDateString() === today.toDateString(),
+				)
+			},
+
+			getReadyForTreatment: () => {
+				const today = new Date()
+				return get().appointments.filter(
+					(appointment) =>
+						safeDate(appointment.date).toDateString() === today.toDateString() &&
+						(appointment.status === 'checked-in' || appointment.status === 'in-progress'),
+				)
+			},
 
 			clearAllAppointments: () => set({ appointments: [] }),
 		}),

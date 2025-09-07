@@ -24,8 +24,9 @@ export default function Appointments() {
 
 	// Filter appointments for selected date
 	const todayAppointments = appointments.filter((apt) => {
-		const aptDate = new Date(apt.date)
-		return aptDate.toDateString() === selectedDate.toDateString()
+		const aptDate = apt.date instanceof Date ? apt.date : new Date(apt.date)
+		const selDate = selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+		return aptDate.toDateString() === selDate.toDateString()
 	})
 
 	// Get appointment for specific time slot
@@ -172,7 +173,7 @@ export default function Appointments() {
 							</h2>
 
 							{/* Time slots */}
-							<div className="max-h-96 space-y-2 overflow-y-auto">
+							<div className="space-y-2">
 								{timeSlots.map((time) => {
 									const appointment = getAppointmentForTimeSlot(time)
 									return (

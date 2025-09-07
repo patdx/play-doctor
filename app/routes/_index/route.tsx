@@ -27,8 +27,22 @@ export default function Home() {
 				</div>
 
 				{/* Main Navigation Grid */}
-				<div className="mx-auto mt-12 max-w-4xl">
+				<div className="mx-auto mt-12 max-w-6xl">
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						{/* Check-in */}
+						<Link
+							to="/checkin"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+						>
+							<div className="mb-4 text-6xl">🏥</div>
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
+								Check-in
+							</h2>
+							<p className="text-warm-gray">
+								Check in patients and manage the waiting room
+							</p>
+						</Link>
+
 						{/* Patients */}
 						<Link
 							to="/patients"

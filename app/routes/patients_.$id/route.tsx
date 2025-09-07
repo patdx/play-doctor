@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router'
 import { useState } from 'react'
 import type { Patient } from '~/types/medical'
 import { usePatientsStore } from '~/stores/patients'
+import { useAppointmentsStore } from '~/stores/appointments'
 import { KID_FRIENDLY_CONDITIONS, TREATMENTS } from '~/types/medical'
 import { generateId } from '~/stores/patients'
 
@@ -16,8 +17,10 @@ export default function PatientDetail() {
 	const { id } = useParams<{ id: string }>()
 	const getPatient = usePatientsStore((state) => state.getPatient)
 	const updatePatient = usePatientsStore((state) => state.updatePatient)
+	const getAppointmentsByPatient = useAppointmentsStore((state) => state.getAppointmentsByPatient)
 	
 	const patient = getPatient(id || '')
+	const patientAppointments = patient ? getAppointmentsByPatient(patient.id) : []
 	
 	const [showAddRecord, setShowAddRecord] = useState(false)
 	const [newRecord, setNewRecord] = useState({
@@ -116,7 +119,7 @@ export default function PatientDetail() {
 									😊 Feeling Great!
 								</span>
 								<span className="rounded-full bg-medical-blue px-4 py-2 text-sm font-medium text-white">
-									📅 {patient.medicalHistory.length} visits
+									📅 {patientAppointments.length} appointments
 								</span>
 								<span className="rounded-full bg-happy-orange px-4 py-2 text-sm font-medium text-white">
 									🎂 Joined {patient.createdAt.toLocaleDateString()}
@@ -253,6 +256,96 @@ export default function PatientDetail() {
 												<div className="text-sm font-medium text-doctor-blue">
 													Dr. {record.doctorName}
 												</div>
+											</div>
+										</div>
+									</div>
+								))}
+						</div>
+					)}
+				</div>
+
+				{/* Appointment History */}
+				<div className="mb-8">
+					<div className="mb-6 flex items-center justify-between">
+						<h3 className="text-2xl font-bold text-text-dark">
+							📅 Appointment History
+						</h3>
+						<Link
+							to="/appointments/new"
+							state={{ patientId: patient.id }}
+							className="rounded-full bg-doctor-blue px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-blue-dark"
+						>
+							+ Schedule Appointment
+						</Link>
+					</div>
+
+					{patientAppointments.length === 0 ? (
+						<div className="rounded-2xl bg-white p-12 text-center shadow-lg">
+							<div className="mb-4 text-6xl">📅</div>
+							<h3 className="mb-4 text-xl font-bold text-text-dark">
+								No Appointments Yet
+							</h3>
+							<p className="text-warm-gray">
+								This patient hasn't scheduled any appointments yet.
+							</p>
+						</div>
+					) : (
+						<div className="space-y-4">
+							{patientAppointments
+								.slice()
+								.sort((a, b) => {
+									const dateA = a.date instanceof Date ? a.date : new Date(a.date)
+									const dateB = b.date instanceof Date ? b.date : new Date(b.date)
+									return dateB.getTime() - dateA.getTime()
+								})
+								.map((appointment) => (
+									<div
+										key={appointment.id}
+										className="rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+									>
+										<div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+											<div className="mb-4 sm:mb-0">
+												<h4 className="mb-2 text-xl font-bold text-text-dark">
+													{appointment.type.charAt(0).toUpperCase() + appointment.type.slice(1)}
+												</h4>
+												<p className="mb-2 text-warm-gray">
+													<strong>Date:</strong> {(appointment.date instanceof Date ? appointment.date : new Date(appointment.date)).toLocaleDateString()} at {appointment.time}
+												</p>
+												<p className="mb-2 text-warm-gray">
+													<strong>Duration:</strong> {appointment.duration} minutes
+												</p>
+												{appointment.notes && (
+													<p className="text-warm-gray">
+														<strong>Notes:</strong> {appointment.notes}
+													</p>
+												)}
+											</div>
+											<div className="flex flex-col items-end gap-2">
+												<span className={`rounded-full px-3 py-1 text-xs font-medium ${
+													appointment.status === 'completed' ? 'bg-doctor-green text-white' :
+													appointment.status === 'in-progress' ? 'bg-doctor-blue text-white' :
+													appointment.status === 'checked-in' ? 'bg-happy-orange text-white' :
+													appointment.status === 'cancelled' ? 'bg-gentle-red text-white' :
+													'bg-soft-gray text-warm-gray'
+												}`}>
+													{appointment.status}
+												</span>
+												{appointment.status === 'scheduled' && (
+													<Link
+														to="/checkin"
+														className="text-sm text-doctor-blue hover:text-doctor-blue-dark"
+													>
+														Check-in →
+													</Link>
+												)}
+												{(appointment.status === 'checked-in' || appointment.status === 'in-progress') && (
+													<Link
+														to={`/treatment/${appointment.id}`}
+														className="text-sm text-doctor-green hover:text-doctor-green-dark"
+													>
+														Continue Treatment →
+													</Link>
+												)}
 											</div>
 										</div>
 									</div>

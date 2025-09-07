@@ -256,46 +256,10 @@ export default function MedicalTools() {
 							)}
 						</div>
 
-						{/* Patient Feedback */}
-						{diagnosis && treatment && (
-							<div className="mt-6 rounded-2xl bg-white/20 p-6 text-center backdrop-blur-sm">
-								<div className="mb-2 text-4xl">😊</div>
-								<p className="font-medium text-white">
-									"Thank you, Doctor. I'm feeling better."
-								</p>
-								<p className="mt-2 text-sm text-white/80">- Happy Patient</p>
-							</div>
-						)}
-					</div>
+						</div>
 				</div>
 
-				{/* Medical Fun Facts */}
-				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-xl font-bold text-text-dark">
-						🧠 Medical Facts for Young Doctors!
-					</h3>
-					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">💗</div>
-							<p className="text-sm text-text-dark">
-								A healthy heart beats about 100,000 times per day!
-							</p>
-						</div>
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">🦴</div>
-							<p className="text-sm text-text-dark">
-								Babies are born with about 300 bones, but adults only have 206!
-							</p>
-						</div>
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">😴</div>
-							<p className="text-sm text-text-dark">
-								Getting enough sleep helps your body heal and grow stronger!
-							</p>
-						</div>
-					</div>
 				</div>
-			</div>
 		</div>
 	)
 }
