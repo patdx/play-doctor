@@ -108,20 +108,20 @@ export default function MedicalTools() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] to-[--color-doctor-blue]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light to-doctor-blue">
 			<div className="container mx-auto px-6 py-8">
 				{/* Header */}
 				<div className="mb-8">
 					<Link
 						to="/"
-						className="mb-4 inline-flex items-center text-[--color-text-dark] hover:text-[--color-doctor-blue]"
+						className="mb-4 inline-flex items-center text-text-dark hover:text-doctor-blue"
 					>
 						← Back to Clinic
 					</Link>
-					<h1 className="text-4xl font-bold text-[--color-text-dark]">
+					<h1 className="text-4xl font-bold text-text-dark">
 						🩺 Medical Tool Kit
 					</h1>
-					<p className="mt-2 text-lg text-[--color-warm-gray]">
+					<p className="mt-2 text-lg text-warm-gray">
 						Choose your magical medical tools to examine and help patients feel
 						better!
 					</p>
@@ -131,7 +131,7 @@ export default function MedicalTools() {
 					{/* Medical Tools Grid */}
 					<div className="lg:col-span-2">
 						<div className="rounded-2xl bg-white p-6 shadow-lg">
-							<h2 className="mb-6 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-6 text-2xl font-bold text-text-dark">
 								🧰 Choose Your Tool
 							</h2>
 							<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -142,9 +142,9 @@ export default function MedicalTools() {
 										disabled={!tool.isUnlocked || selectedTool !== null}
 										className={`group rounded-2xl p-6 text-center transition-all duration-300 ${
 											selectedTool === tool.id
-												? 'scale-105 bg-[--color-doctor-blue] text-white shadow-xl'
+												? 'scale-105 bg-doctor-blue text-white shadow-xl'
 												: tool.isUnlocked
-													? 'bg-[--color-soft-gray] hover:scale-105 hover:bg-[--color-medical-blue] hover:shadow-lg'
+													? 'bg-soft-gray hover:scale-105 hover:bg-medical-blue hover:shadow-lg'
 													: 'cursor-not-allowed bg-gray-200 opacity-50'
 										}`}
 									>
@@ -164,7 +164,7 @@ export default function MedicalTools() {
 
 							{selectedTool && !diagnosis && (
 								<div className="mt-8 text-center">
-									<div className="inline-flex items-center gap-2 rounded-full bg-[--color-doctor-blue] px-6 py-3 text-white">
+									<div className="inline-flex items-center gap-2 rounded-full bg-doctor-blue px-6 py-3 text-white">
 										<div className="animate-spin">⚕️</div>
 										<span>Using tool... please wait!</span>
 									</div>
@@ -176,14 +176,14 @@ export default function MedicalTools() {
 					{/* Examination Results */}
 					<div className="lg:col-span-1">
 						<div className="rounded-2xl bg-white p-6 shadow-lg">
-							<h2 className="mb-6 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-6 text-2xl font-bold text-text-dark">
 								📋 Examination Results
 							</h2>
 
 							{!selectedTool && (
 								<div className="py-8 text-center">
 									<div className="mb-4 text-6xl">🔍</div>
-									<p className="text-[--color-warm-gray]">
+									<p className="text-warm-gray">
 										Select a medical tool to start examining a patient!
 									</p>
 								</div>
@@ -192,7 +192,7 @@ export default function MedicalTools() {
 							{selectedTool && !diagnosis && (
 								<div className="py-8 text-center">
 									<div className="mb-4 animate-pulse text-6xl">👨‍⚕️</div>
-									<p className="text-[--color-warm-gray]">
+									<p className="text-warm-gray">
 										Examining patient carefully...
 									</p>
 								</div>
@@ -201,24 +201,24 @@ export default function MedicalTools() {
 							{diagnosis && treatment && (
 								<div className="space-y-6">
 									{/* Diagnosis */}
-									<div className="rounded-xl bg-[--color-medical-light] p-4">
-										<h3 className="mb-2 font-semibold text-[--color-text-dark]">
+									<div className="rounded-xl bg-medical-light p-4">
+										<h3 className="mb-2 font-semibold text-text-dark">
 											🎯 Diagnosis:
 										</h3>
-										<p className="text-[--color-warm-gray]">{diagnosis}</p>
+										<p className="text-warm-gray">{diagnosis}</p>
 									</div>
 
 									{/* Treatment */}
-									<div className="bg-opacity-20 rounded-xl bg-[--color-doctor-green] p-4">
-										<h3 className="mb-2 font-semibold text-[--color-text-dark]">
+									<div className="bg-opacity-20 rounded-xl bg-doctor-green p-4">
+										<h3 className="mb-2 font-semibold text-text-dark">
 											💊 Recommended Treatment:
 										</h3>
-										<p className="text-[--color-warm-gray]">{treatment}</p>
+										<p className="text-warm-gray">{treatment}</p>
 									</div>
 
 									{/* Prescription */}
-									<div className="bg-opacity-20 rounded-xl bg-[--color-happy-orange] p-4">
-										<h3 className="mb-2 font-semibold text-[--color-text-dark]">
+									<div className="bg-opacity-20 rounded-xl bg-happy-orange p-4">
+										<h3 className="mb-2 font-semibold text-text-dark">
 											📄 Prescription:
 										</h3>
 										<div className="space-y-2 text-sm">
@@ -241,13 +241,13 @@ export default function MedicalTools() {
 									<div className="space-y-3">
 										<button
 											onClick={resetExamination}
-											className="w-full rounded-xl bg-[--color-doctor-green] py-3 font-semibold text-white transition-colors hover:bg-[--color-doctor-green-dark]"
+											className="w-full rounded-xl bg-doctor-green py-3 font-semibold text-white transition-colors hover:bg-doctor-green-dark"
 										>
 											🎉 Patient Treated Successfully!
 										</button>
 										<button
 											onClick={resetExamination}
-											className="w-full rounded-xl bg-[--color-warm-gray] py-2 text-white transition-colors hover:bg-gray-500"
+											className="w-full rounded-xl bg-warm-gray py-2 text-white transition-colors hover:bg-gray-500"
 										>
 											Examine Another Patient
 										</button>
@@ -272,25 +272,25 @@ export default function MedicalTools() {
 
 				{/* Medical Fun Facts */}
 				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-xl font-bold text-[--color-text-dark]">
+					<h3 className="mb-4 text-xl font-bold text-text-dark">
 						🧠 Fun Medical Facts for Young Doctors!
 					</h3>
 					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">💗</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								A healthy heart beats about 100,000 times per day!
 							</p>
 						</div>
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">🦴</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								Babies are born with about 300 bones, but adults only have 206!
 							</p>
 						</div>
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">😴</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								Getting enough sleep helps your body heal and grow stronger!
 							</p>
 						</div>

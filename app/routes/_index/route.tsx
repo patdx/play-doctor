@@ -13,7 +13,7 @@ export function meta() {
 
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] via-[--color-doctor-blue] to-[--color-doctor-green]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light via-doctor-blue to-doctor-green">
 			{/* Header */}
 			<div className="container mx-auto px-6 py-8">
 				<div className="text-center">
@@ -35,10 +35,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">👥</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								My Patients
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								See all your patients and their colorful medical records
 							</p>
 						</Link>
@@ -49,10 +49,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">📅</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								Appointments
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								Schedule checkups and manage your daily patient visits
 							</p>
 						</Link>
@@ -63,10 +63,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">🩺</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								Medical Kit
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								Use fun medical tools to diagnose and treat patients
 							</p>
 						</Link>
@@ -77,10 +77,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">💰</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								Billing Fun
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								Practice with play money and receipts
 							</p>
 						</Link>
@@ -91,10 +91,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">📊</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								My Reports
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								See how many patients you've helped today
 							</p>
 						</Link>
@@ -105,10 +105,10 @@ export default function Home() {
 							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">⚙️</div>
-							<h2 className="mb-2 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
 								Settings
 							</h2>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								Customize your clinic and sound settings
 							</p>
 						</Link>

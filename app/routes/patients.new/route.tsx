@@ -71,20 +71,20 @@ export default function NewPatient() {
 	]
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] to-[--color-doctor-blue]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light to-doctor-blue">
 			<div className="container mx-auto px-6 py-8">
 				{/* Header */}
 				<div className="mb-8">
 					<Link
 						to="/patients"
-						className="mb-4 inline-flex items-center text-[--color-text-dark] hover:text-[--color-doctor-blue]"
+						className="mb-4 inline-flex items-center text-text-dark hover:text-doctor-blue"
 					>
 						← Back to Patients
 					</Link>
-					<h1 className="text-4xl font-bold text-[--color-text-dark]">
+					<h1 className="text-4xl font-bold text-text-dark">
 						👶 Add New Patient
 					</h1>
-					<p className="mt-2 text-lg text-[--color-warm-gray]">
+					<p className="mt-2 text-lg text-warm-gray">
 						Let's create a colorful medical record for your new patient!
 					</p>
 				</div>
@@ -106,28 +106,28 @@ export default function NewPatient() {
 							>
 								{selectedAvatar}
 							</div>
-							<p className="text-[--color-warm-gray]">
+							<p className="text-warm-gray">
 								This is how your patient will look!
 							</p>
 						</div>
 
 						{/* Patient Name */}
 						<div className="mb-6">
-							<label className="mb-2 block text-lg font-semibold text-[--color-text-dark]">
+							<label className="mb-2 block text-lg font-semibold text-text-dark">
 								Patient Name
 							</label>
 							<input
 								type="text"
 								name="name"
 								required
-								className="w-full rounded-2xl border-2 border-[--color-medical-blue] px-4 py-3 text-lg focus:border-[--color-doctor-blue] focus:outline-none"
+								className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 								placeholder="Enter a fun name like 'Bella the Bear'"
 							/>
 						</div>
 
 						{/* Age */}
 						<div className="mb-6">
-							<label className="mb-2 block text-lg font-semibold text-[--color-text-dark]">
+							<label className="mb-2 block text-lg font-semibold text-text-dark">
 								Age
 							</label>
 							<input
@@ -136,14 +136,14 @@ export default function NewPatient() {
 								required
 								min="3"
 								max="99"
-								className="w-full rounded-2xl border-2 border-[--color-medical-blue] px-4 py-3 text-lg focus:border-[--color-doctor-blue] focus:outline-none"
+								className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 								placeholder="How old is your patient?"
 							/>
 						</div>
 
 						{/* Avatar Selection */}
 						<div className="mb-6">
-							<label className="mb-4 block text-lg font-semibold text-[--color-text-dark]">
+							<label className="mb-4 block text-lg font-semibold text-text-dark">
 								Choose an Avatar
 							</label>
 							<div className="grid grid-cols-8 gap-3">
@@ -154,8 +154,8 @@ export default function NewPatient() {
 										onClick={() => setSelectedAvatar(avatar)}
 										className={`rounded-2xl p-3 text-3xl transition-all duration-200 hover:scale-110 ${
 											selectedAvatar === avatar
-												? 'bg-[--color-doctor-blue] shadow-lg'
-												: 'bg-[--color-soft-gray] hover:bg-[--color-medical-blue]'
+												? 'bg-doctor-blue shadow-lg'
+												: 'bg-soft-gray hover:bg-medical-blue'
 										}`}
 									>
 										{avatar}
@@ -167,7 +167,7 @@ export default function NewPatient() {
 
 						{/* Favorite Color */}
 						<div className="mb-8">
-							<label className="mb-4 block text-lg font-semibold text-[--color-text-dark]">
+							<label className="mb-4 block text-lg font-semibold text-text-dark">
 								Favorite Color
 							</label>
 							<div className="grid grid-cols-7 gap-3">
@@ -178,7 +178,7 @@ export default function NewPatient() {
 										onClick={() => setSelectedColor(color.name)}
 										className={`rounded-2xl p-4 transition-all duration-200 hover:scale-110 ${
 											selectedColor === color.name
-												? 'shadow-lg ring-4 ring-[--color-text-dark]'
+												? 'shadow-lg ring-4 ring-text-dark'
 												: 'hover:shadow-md'
 										} ${color.bg}`}
 										title={color.name}
@@ -196,13 +196,13 @@ export default function NewPatient() {
 						<div className="flex gap-4">
 							<Link
 								to="/patients"
-								className="flex-1 rounded-2xl bg-[--color-warm-gray] py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:bg-gray-500"
+								className="flex-1 rounded-2xl bg-warm-gray py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:bg-gray-500"
 							>
 								Cancel
 							</Link>
 							<button
 								type="submit"
-								className="flex-1 rounded-2xl bg-[--color-doctor-green] py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[--color-doctor-green-dark]"
+								className="flex-1 rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 							>
 								🎉 Add Patient
 							</button>

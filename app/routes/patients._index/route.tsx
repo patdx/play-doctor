@@ -52,23 +52,23 @@ export default function Patients() {
 	}, [patients, searchQuery, showFavorites, ageFilter, getFavoritePatients])
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] to-[--color-doctor-blue]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light to-doctor-blue">
 			<div className="container mx-auto px-6 py-8">
 				{/* Header */}
 				<div className="mb-8">
 					<Link
 						to="/"
-						className="mb-4 inline-flex items-center text-[--color-text-dark] hover:text-[--color-doctor-blue]"
+						className="mb-4 inline-flex items-center text-text-dark hover:text-doctor-blue"
 					>
 						← Back to Clinic
 					</Link>
 					<div className="flex items-center justify-between">
-						<h1 className="text-4xl font-bold text-[--color-text-dark]">
+						<h1 className="text-4xl font-bold text-text-dark">
 							👥 My Patients
 						</h1>
 						<Link
 							to="/patients/new"
-							className="rounded-full bg-[--color-happy-orange] px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[--color-happy-orange-dark]"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Add New Patient
 						</Link>
@@ -84,14 +84,14 @@ export default function Patients() {
 								placeholder="Search patients by name..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="w-full rounded-full border-2 border-[--color-medical-blue] px-4 py-2 text-lg focus:border-[--color-doctor-blue] focus:outline-none"
+								className="w-full rounded-full border-2 border-medical-blue px-4 py-2 text-lg focus:border-doctor-blue focus:outline-none"
 							/>
 						</div>
 						<div className="flex gap-4">
 							<select
 								value={ageFilter}
 								onChange={(e) => setAgeFilter(e.target.value)}
-								className="rounded-full border-2 border-[--color-medical-blue] px-4 py-2 focus:border-[--color-doctor-blue] focus:outline-none"
+								className="rounded-full border-2 border-medical-blue px-4 py-2 focus:border-doctor-blue focus:outline-none"
 							>
 								<option value="">All Ages</option>
 								<option value="5-7">Ages 5-7</option>
@@ -102,8 +102,8 @@ export default function Patients() {
 								onClick={() => setShowFavorites(!showFavorites)}
 								className={`rounded-full px-4 py-2 text-white transition-colors ${
 									showFavorites
-										? 'bg-[--color-fun-purple-dark]'
-										: 'bg-[--color-fun-purple] hover:bg-[--color-fun-purple-dark]'
+										? 'bg-fun-purple-dark'
+										: 'bg-fun-purple hover:bg-fun-purple-dark'
 								}`}
 							>
 								⭐ {showFavorites ? 'All' : 'Favorites'}
@@ -116,15 +116,15 @@ export default function Patients() {
 				{filteredPatients.length === 0 ? (
 					<div className="rounded-2xl bg-white p-12 text-center shadow-lg">
 						<div className="mb-4 text-6xl">🏥</div>
-						<h2 className="mb-4 text-2xl font-bold text-[--color-text-dark]">
+						<h2 className="mb-4 text-2xl font-bold text-text-dark">
 							No Patients Yet!
 						</h2>
-						<p className="mb-6 text-[--color-warm-gray]">
+						<p className="mb-6 text-warm-gray">
 							Start your medical practice by adding your first patient.
 						</p>
 						<Link
 							to="/patients/new"
-							className="inline-block rounded-full bg-[--color-doctor-green] px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[--color-doctor-green-dark]"
+							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 						>
 							Add Your First Patient
 						</Link>
@@ -178,22 +178,22 @@ function PatientCard({
 
 			{/* Patient Info */}
 			<div className="mb-4">
-				<h3 className="text-xl font-bold text-[--color-text-dark] group-hover:text-[--color-doctor-blue]">
+				<h3 className="text-xl font-bold text-text-dark group-hover:text-doctor-blue">
 					{patient.name}
 				</h3>
-				<p className="text-[--color-warm-gray]">
+				<p className="text-warm-gray">
 					Age {patient.age} • Loves {patient.favoriteColor}
 				</p>
 			</div>
 
 			{/* Patient Stats */}
-			<div className="flex justify-between text-sm text-[--color-warm-gray]">
+			<div className="flex justify-between text-sm text-warm-gray">
 				<span>{patient.medicalHistory.length} visits</span>
 				<span>Joined {patient.createdAt.toLocaleDateString()}</span>
 			</div>
 
 			{/* Health Status Indicator */}
-			<div className="mt-4 flex items-center justify-center rounded-full bg-[--color-doctor-green] py-2 font-medium text-white">
+			<div className="mt-4 flex items-center justify-center rounded-full bg-doctor-green py-2 font-medium text-white">
 				😊 Feeling Great!
 			</div>
 		</Link>

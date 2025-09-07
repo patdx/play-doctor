@@ -37,13 +37,13 @@ export default function Appointments() {
 	const getAppointmentColor = (type: string) => {
 		switch (type) {
 			case 'emergency':
-				return 'bg-[--color-gentle-red] text-[--color-gentle-red-dark] border-[--color-gentle-red-dark]'
+				return 'bg-gentle-red text-gentle-red-dark border-gentle-red-dark'
 			case 'vaccine':
-				return 'bg-[--color-doctor-green] text-white'
+				return 'bg-doctor-green text-white'
 			case 'followup':
-				return 'bg-[--color-fun-purple] text-white'
+				return 'bg-fun-purple text-white'
 			default:
-				return 'bg-[--color-doctor-blue] text-white'
+				return 'bg-doctor-blue text-white'
 		}
 	}
 
@@ -57,23 +57,23 @@ export default function Appointments() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] to-[--color-doctor-blue]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light to-doctor-blue">
 			<div className="container mx-auto px-6 py-8">
 				{/* Header */}
 				<div className="mb-8">
 					<Link
 						to="/"
-						className="mb-4 inline-flex items-center text-[--color-text-dark] hover:text-[--color-doctor-blue]"
+						className="mb-4 inline-flex items-center text-text-dark hover:text-doctor-blue"
 					>
 						← Back to Clinic
 					</Link>
 					<div className="flex items-center justify-between">
-						<h1 className="text-4xl font-bold text-[--color-text-dark]">
+						<h1 className="text-4xl font-bold text-text-dark">
 							📅 Appointments
 						</h1>
 						<Link
 							to="/appointments/new"
-							className="rounded-full bg-[--color-happy-orange] px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[--color-happy-orange-dark]"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Book Appointment
 						</Link>
@@ -84,7 +84,7 @@ export default function Appointments() {
 					{/* Calendar/Date Picker */}
 					<div className="lg:col-span-1">
 						<div className="rounded-2xl bg-white p-6 shadow-lg">
-							<h2 className="mb-4 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-4 text-2xl font-bold text-text-dark">
 								📆 Select Date
 							</h2>
 
@@ -97,12 +97,12 @@ export default function Appointments() {
 											yesterday.setDate(yesterday.getDate() - 1)
 											setSelectedDate(yesterday)
 										}}
-										className="rounded-full bg-[--color-soft-gray] p-2 hover:bg-[--color-medical-blue]"
+										className="rounded-full bg-soft-gray p-2 hover:bg-medical-blue"
 									>
 										←
 									</button>
 									<div className="text-center">
-										<div className="text-lg font-bold text-[--color-text-dark]">
+										<div className="text-lg font-bold text-text-dark">
 											{formatDate(selectedDate)}
 										</div>
 									</div>
@@ -112,7 +112,7 @@ export default function Appointments() {
 											tomorrow.setDate(tomorrow.getDate() + 1)
 											setSelectedDate(tomorrow)
 										}}
-										className="rounded-full bg-[--color-soft-gray] p-2 hover:bg-[--color-medical-blue]"
+										className="rounded-full bg-soft-gray p-2 hover:bg-medical-blue"
 									>
 										→
 									</button>
@@ -122,7 +122,7 @@ export default function Appointments() {
 								<div className="grid grid-cols-2 gap-2">
 									<button
 										onClick={() => setSelectedDate(new Date())}
-										className="rounded-lg bg-[--color-doctor-blue] px-4 py-2 text-white hover:bg-[--color-doctor-blue-dark]"
+										className="rounded-lg bg-doctor-blue px-4 py-2 text-white hover:bg-doctor-blue-dark"
 									>
 										Today
 									</button>
@@ -132,7 +132,7 @@ export default function Appointments() {
 											tomorrow.setDate(tomorrow.getDate() + 1)
 											setSelectedDate(tomorrow)
 										}}
-										className="rounded-lg bg-[--color-doctor-green] px-4 py-2 text-white hover:bg-[--color-doctor-green-dark]"
+										className="rounded-lg bg-doctor-green px-4 py-2 text-white hover:bg-doctor-green-dark"
 									>
 										Tomorrow
 									</button>
@@ -140,14 +140,14 @@ export default function Appointments() {
 							</div>
 
 							{/* Daily stats */}
-							<div className="mt-6 space-y-2 rounded-lg bg-[--color-soft-gray] p-4">
+							<div className="mt-6 space-y-2 rounded-lg bg-soft-gray p-4">
 								<div className="flex justify-between text-sm">
 									<span>Total Appointments:</span>
 									<span className="font-bold">{todayAppointments.length}</span>
 								</div>
 								<div className="flex justify-between text-sm">
 									<span>Emergency Visits:</span>
-									<span className="font-bold text-[--color-gentle-red-dark]">
+									<span className="font-bold text-gentle-red-dark">
 										{
 											todayAppointments.filter((a) => a.type === 'emergency')
 												.length
@@ -156,7 +156,7 @@ export default function Appointments() {
 								</div>
 								<div className="flex justify-between text-sm">
 									<span>Available Slots:</span>
-									<span className="font-bold text-[--color-doctor-green-dark]">
+									<span className="font-bold text-doctor-green-dark">
 										{timeSlots.length - todayAppointments.length}
 									</span>
 								</div>
@@ -167,7 +167,7 @@ export default function Appointments() {
 					{/* Schedule Grid */}
 					<div className="lg:col-span-2">
 						<div className="rounded-2xl bg-white p-6 shadow-lg">
-							<h2 className="mb-6 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-6 text-2xl font-bold text-text-dark">
 								🕐 Daily Schedule
 							</h2>
 
@@ -177,7 +177,7 @@ export default function Appointments() {
 									const appointment = getAppointmentForTimeSlot(time)
 									return (
 										<div key={time} className="flex items-center gap-4">
-											<div className="w-16 text-right text-sm font-medium text-[--color-warm-gray]">
+											<div className="w-16 text-right text-sm font-medium text-warm-gray">
 												{time}
 											</div>
 											<div className="flex-1">
@@ -200,7 +200,7 @@ export default function Appointments() {
 												) : (
 													<Link
 														to={`/appointments/new?date=${selectedDate.toISOString().split('T')[0]}&time=${time}`}
-														className="block rounded-lg border-2 border-dashed border-[--color-medical-blue] p-3 text-center text-[--color-warm-gray] transition-all duration-200 hover:border-[--color-doctor-blue] hover:bg-[--color-medical-light]"
+														className="block rounded-lg border-2 border-dashed border-medical-blue p-3 text-center text-warm-gray transition-all duration-200 hover:border-doctor-blue hover:bg-medical-light"
 													>
 														+ Available
 													</Link>
@@ -216,24 +216,24 @@ export default function Appointments() {
 
 				{/* Appointment Types Legend */}
 				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-lg font-bold text-[--color-text-dark]">
+					<h3 className="mb-4 text-lg font-bold text-text-dark">
 						Appointment Types
 					</h3>
 					<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
 						<div className="flex items-center gap-2">
-							<div className="h-4 w-4 rounded bg-[--color-doctor-blue]"></div>
+							<div className="h-4 w-4 rounded bg-doctor-blue"></div>
 							<span className="text-sm">Checkup</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<div className="h-4 w-4 rounded bg-[--color-gentle-red]"></div>
+							<div className="h-4 w-4 rounded bg-gentle-red"></div>
 							<span className="text-sm">Emergency</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<div className="h-4 w-4 rounded bg-[--color-doctor-green]"></div>
+							<div className="h-4 w-4 rounded bg-doctor-green"></div>
 							<span className="text-sm">Vaccine</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<div className="h-4 w-4 rounded bg-[--color-fun-purple]"></div>
+							<div className="h-4 w-4 rounded bg-fun-purple"></div>
 							<span className="text-sm">Follow-up</span>
 						</div>
 					</div>

@@ -36,11 +36,11 @@ export default function Billing() {
 	const getBillStatusColor = (status: string) => {
 		switch (status) {
 			case 'paid':
-				return 'bg-[--color-doctor-green] text-white'
+				return 'bg-doctor-green text-white'
 			case 'partial':
-				return 'bg-[--color-happy-orange] text-white'
+				return 'bg-happy-orange text-white'
 			default:
-				return 'bg-[--color-gentle-red] text-[--color-gentle-red-dark]'
+				return 'bg-gentle-red text-gentle-red-dark'
 		}
 	}
 
@@ -65,28 +65,28 @@ export default function Billing() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[--color-medical-light] to-[--color-doctor-blue]">
+		<div className="min-h-screen bg-gradient-to-br from-medical-light to-doctor-blue">
 			<div className="container mx-auto px-6 py-8">
 				{/* Header */}
 				<div className="mb-8">
 					<Link
 						to="/"
-						className="mb-4 inline-flex items-center text-[--color-text-dark] hover:text-[--color-doctor-blue]"
+						className="mb-4 inline-flex items-center text-text-dark hover:text-doctor-blue"
 					>
 						← Back to Clinic
 					</Link>
 					<div className="flex items-center justify-between">
-						<h1 className="text-4xl font-bold text-[--color-text-dark]">
+						<h1 className="text-4xl font-bold text-text-dark">
 							💰 Billing Center
 						</h1>
 						<button
 							onClick={() => console.log('Create new bill - coming soon!')}
-							className="rounded-full bg-[--color-happy-orange] px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[--color-happy-orange-dark]"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Create New Bill
 						</button>
 					</div>
-					<p className="mt-2 text-lg text-[--color-warm-gray]">
+					<p className="mt-2 text-lg text-warm-gray">
 						Practice handling play money and receipts like a real medical
 						office!
 					</p>
@@ -96,23 +96,23 @@ export default function Billing() {
 					{/* Bills List */}
 					<div className="lg:col-span-2">
 						<div className="rounded-2xl bg-white p-6 shadow-lg">
-							<h2 className="mb-6 text-2xl font-bold text-[--color-text-dark]">
+							<h2 className="mb-6 text-2xl font-bold text-text-dark">
 								📄 Patient Bills
 							</h2>
 
 							{bills.length === 0 ? (
 								<div className="py-12 text-center">
 									<div className="mb-4 text-6xl">💳</div>
-									<h3 className="mb-2 text-xl font-bold text-[--color-text-dark]">
+									<h3 className="mb-2 text-xl font-bold text-text-dark">
 										No Bills Yet!
 									</h3>
-									<p className="mb-6 text-[--color-warm-gray]">
+									<p className="mb-6 text-warm-gray">
 										Start treating patients to generate your first medical
 										bills.
 									</p>
 									<Link
 										to="/appointments/new"
-										className="inline-block rounded-full bg-[--color-doctor-green] px-6 py-3 font-semibold text-white hover:bg-[--color-doctor-green-dark]"
+										className="inline-block rounded-full bg-doctor-green px-6 py-3 font-semibold text-white hover:bg-doctor-green-dark"
 									>
 										Schedule First Appointment
 									</Link>
@@ -125,14 +125,14 @@ export default function Billing() {
 											onClick={() => setSelectedBill(bill)}
 											className={`cursor-pointer rounded-xl border-2 p-4 transition-all duration-200 ${
 												selectedBill?.id === bill.id
-													? 'border-[--color-doctor-blue] bg-[--color-medical-light] shadow-md'
-													: 'border-[--color-soft-gray] hover:border-[--color-medical-blue] hover:shadow-sm'
+													? 'border-doctor-blue bg-medical-light shadow-md'
+													: 'border-soft-gray hover:border-medical-blue hover:shadow-sm'
 											}`}
 										>
 											<div className="flex items-start justify-between">
 												<div className="flex-1">
 													<div className="mb-2 flex items-center gap-3">
-														<h3 className="font-semibold text-[--color-text-dark]">
+														<h3 className="font-semibold text-text-dark">
 															{getPatientName(bill.patientId)}
 														</h3>
 														<span
@@ -141,13 +141,13 @@ export default function Billing() {
 															{bill.paymentStatus}
 														</span>
 													</div>
-													<div className="mb-2 text-sm text-[--color-warm-gray]">
+													<div className="mb-2 text-sm text-warm-gray">
 														Bill #{bill.id.slice(-6)} •{' '}
 														{bill.createdAt.toLocaleDateString()}
 													</div>
 													<div className="flex items-center gap-4 text-sm">
 														<span>{bill.items.length} services</span>
-														<span className="font-bold text-[--color-text-dark]">
+														<span className="font-bold text-text-dark">
 															Total: ${bill.total}
 														</span>
 													</div>
@@ -167,7 +167,7 @@ export default function Billing() {
 								{/* Bill Details */}
 								<div className="rounded-2xl bg-white p-6 shadow-lg">
 									<div className="mb-4 flex items-center justify-between">
-										<h2 className="text-xl font-bold text-[--color-text-dark]">
+										<h2 className="text-xl font-bold text-text-dark">
 											Bill Details
 										</h2>
 										<span
@@ -179,17 +179,17 @@ export default function Billing() {
 
 									<div className="space-y-4">
 										<div>
-											<h3 className="mb-2 font-semibold text-[--color-text-dark]">
+											<h3 className="mb-2 font-semibold text-text-dark">
 												Patient: {getPatientName(selectedBill.patientId)}
 											</h3>
-											<p className="text-sm text-[--color-warm-gray]">
+											<p className="text-sm text-warm-gray">
 												Bill #{selectedBill.id.slice(-6)} •{' '}
 												{selectedBill.createdAt.toLocaleDateString()}
 											</p>
 										</div>
 
 										<div>
-											<h4 className="mb-2 font-medium text-[--color-text-dark]">
+											<h4 className="mb-2 font-medium text-text-dark">
 												Services:
 											</h4>
 											<div className="space-y-2">
@@ -202,7 +202,7 @@ export default function Billing() {
 															<span>{getCategoryIcon(item.category)}</span>
 															<span>{item.description}</span>
 															{item.quantity > 1 && (
-																<span className="text-[--color-warm-gray]">
+																<span className="text-warm-gray">
 																	x{item.quantity}
 																</span>
 															)}
@@ -219,7 +219,7 @@ export default function Billing() {
 												<span>${selectedBill.subtotal}</span>
 											</div>
 											{selectedBill.discount > 0 && (
-												<div className="mb-1 flex justify-between text-sm text-[--color-doctor-green-dark]">
+												<div className="mb-1 flex justify-between text-sm text-doctor-green-dark">
 													<span>Discount:</span>
 													<span>-${selectedBill.discount}</span>
 												</div>
@@ -235,13 +235,13 @@ export default function Billing() {
 								{/* Payment Processing */}
 								{selectedBill.paymentStatus === 'pending' && (
 									<div className="rounded-2xl bg-white p-6 shadow-lg">
-										<h3 className="mb-4 text-lg font-bold text-[--color-text-dark]">
+										<h3 className="mb-4 text-lg font-bold text-text-dark">
 											💳 Process Payment
 										</h3>
 
 										<div className="space-y-4">
 											<div>
-												<label className="mb-2 block text-sm font-medium text-[--color-text-dark]">
+												<label className="mb-2 block text-sm font-medium text-text-dark">
 													Payment Method:
 												</label>
 												<div className="grid grid-cols-3 gap-2">
@@ -252,8 +252,8 @@ export default function Billing() {
 																onClick={() => setPaymentMethod(method)}
 																className={`rounded-lg p-3 text-sm font-medium transition-all ${
 																	paymentMethod === method
-																		? 'bg-[--color-doctor-blue] text-white'
-																		: 'bg-[--color-soft-gray] hover:bg-[--color-medical-blue]'
+																		? 'bg-doctor-blue text-white'
+																		: 'bg-soft-gray hover:bg-medical-blue'
 																}`}
 															>
 																{method === 'cash' && '💵'}
@@ -270,7 +270,7 @@ export default function Billing() {
 												onClick={() =>
 													processBillPayment(selectedBill, paymentMethod)
 												}
-												className="w-full rounded-xl bg-[--color-doctor-green] py-3 font-semibold text-white transition-colors hover:bg-[--color-doctor-green-dark]"
+												className="w-full rounded-xl bg-doctor-green py-3 font-semibold text-white transition-colors hover:bg-doctor-green-dark"
 											>
 												💰 Collect ${selectedBill.total}
 											</button>
@@ -280,17 +280,17 @@ export default function Billing() {
 
 								{/* Payment Success */}
 								{selectedBill.paymentStatus === 'paid' && (
-									<div className="bg-opacity-20 rounded-2xl bg-[--color-doctor-green] p-6 text-center">
+									<div className="bg-opacity-20 rounded-2xl bg-doctor-green p-6 text-center">
 										<div className="mb-2 text-4xl">✅</div>
-										<h3 className="mb-2 font-bold text-[--color-doctor-green-dark]">
+										<h3 className="mb-2 font-bold text-doctor-green-dark">
 											Payment Received!
 										</h3>
-										<p className="text-sm text-[--color-text-dark]">
+										<p className="text-sm text-text-dark">
 											${selectedBill.total} paid via{' '}
 											{selectedBill.paymentMethod}
 										</p>
 										<div className="mt-4">
-											<button className="rounded-lg bg-[--color-doctor-green] px-4 py-2 text-sm text-white hover:bg-[--color-doctor-green-dark]">
+											<button className="rounded-lg bg-doctor-green px-4 py-2 text-sm text-white hover:bg-doctor-green-dark">
 												🖨️ Print Receipt
 											</button>
 										</div>
@@ -301,10 +301,10 @@ export default function Billing() {
 							<div className="rounded-2xl bg-white p-6 shadow-lg">
 								<div className="py-8 text-center">
 									<div className="mb-4 text-6xl">💰</div>
-									<h3 className="mb-2 text-lg font-bold text-[--color-text-dark]">
+									<h3 className="mb-2 text-lg font-bold text-text-dark">
 										Select a Bill
 									</h3>
-									<p className="text-[--color-warm-gray]">
+									<p className="text-warm-gray">
 										Choose a patient bill from the list to view details and
 										process payment.
 									</p>
@@ -316,27 +316,27 @@ export default function Billing() {
 
 				{/* Fun Money Facts */}
 				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-xl font-bold text-[--color-text-dark]">
+					<h3 className="mb-4 text-xl font-bold text-text-dark">
 						🎓 Fun Facts About Medical Billing
 					</h3>
 					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">🏥</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								In real hospitals, computers help doctors keep track of all the
 								bills automatically!
 							</p>
 						</div>
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">📋</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								Medical bills help hospitals buy new equipment to help more
 								patients feel better!
 							</p>
 						</div>
-						<div className="rounded-lg bg-[--color-medical-light] p-4">
+						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">💡</div>
-							<p className="text-sm text-[--color-text-dark]">
+							<p className="text-sm text-text-dark">
 								This is just pretend money - real medical visits should always
 								involve grown-ups!
 							</p>
