@@ -18,10 +18,12 @@
     "isbot": "5.1.30",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "react-router": "7.8.2"
+    "react-router": "7.8.2",
+    "zustand": "5.0.8"
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "0.2.3",
+    "@playwright/mcp": "0.0.36",
     "@react-router/dev": "7.8.2",
     "@react-router/fs-routes": "7.8.2",
     "@tailwindcss/vite": "4.1.13",
@@ -38,9 +40,9 @@
     "unplugin-auto-import": "20.1.0",
     "vite": "7.1.4",
     "vite-tsconfig-paths": "5.1.4",
+    "wireit": "0.14.12",
     "workerd": "1.20250906.0",
-    "wrangler": "4.34.0",
-    "wireit": "0.14.12"
+    "wrangler": "4.34.0"
   },
   "wireit": {
     "build": {

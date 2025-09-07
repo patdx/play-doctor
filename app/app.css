@@ -1,1 +1,36 @@
 @import 'tailwindcss';
+
+/* Play Doctor App - Kid-Friendly Theme */
+@theme {
+	/* Primary colors - Bright, cheerful blues and greens */
+	--color-doctor-blue: #4fc3f7;
+	--color-doctor-blue-dark: #29b6f6;
+	--color-doctor-green: #66bb6a;
+	--color-doctor-green-dark: #4caf50;
+
+	/* Secondary colors - Warm oranges and yellows */
+	--color-happy-orange: #ffb74d;
+	--color-happy-orange-dark: #ff9800;
+	--color-sunny-yellow: #ffeb3b;
+	--color-sunny-yellow-dark: #ffc107;
+
+	/* Accent colors - Purple and pink for fun elements */
+	--color-fun-purple: #ba68c8;
+	--color-fun-purple-dark: #9c27b0;
+	--color-sweet-pink: #f48fb1;
+	--color-sweet-pink-dark: #e91e63;
+
+	/* Medical colors - Clean whites and light blues */
+	--color-medical-white: #fafafa;
+	--color-medical-light: #e3f2fd;
+	--color-medical-blue: #bbdefb;
+
+	/* Emergency colors - Gentle reds (not scary) */
+	--color-gentle-red: #ffcdd2;
+	--color-gentle-red-dark: #ef5350;
+
+	/* Neutral colors */
+	--color-soft-gray: #f5f5f5;
+	--color-warm-gray: #9e9e9e;
+	--color-text-dark: #424242;
+}
