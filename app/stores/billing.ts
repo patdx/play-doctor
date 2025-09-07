@@ -2,6 +2,34 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Bill } from '~/types/medical'
 
+// Custom storage to handle Date serialization/deserialization
+const storage = {
+	getItem: (name: string) => {
+		const item = localStorage.getItem(name)
+		if (!item) return null
+		
+		try {
+			const parsed = JSON.parse(item)
+			// Convert date strings back to Date objects
+			if (parsed.state && parsed.state.bills) {
+				parsed.state.bills = parsed.state.bills.map((bill: any) => ({
+					...bill,
+					createdAt: new Date(bill.createdAt)
+				}))
+			}
+			return parsed
+		} catch {
+			return null
+		}
+	},
+	setItem: (name: string, value: any) => {
+		localStorage.setItem(name, JSON.stringify(value))
+	},
+	removeItem: (name: string) => {
+		localStorage.removeItem(name)
+	}
+}
+
 interface BillingStore {
 	bills: Bill[]
 	addBill: (bill: Bill) => void
@@ -35,7 +63,7 @@ const getSampleBills = (): Bill[] => [
 			},
 			{
 				id: 'item-2',
-				description: 'Magic Bandage',
+				description: 'Bandage',
 				quantity: 2,
 				unitPrice: 5,
 				total: 10,
@@ -98,6 +126,7 @@ export const useBillingStore = create<BillingStore>()(
 		}),
 		{
 			name: 'play-doctor-billing',
+			storage,
 		},
 	),
 )

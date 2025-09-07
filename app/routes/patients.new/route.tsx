@@ -4,6 +4,7 @@ import { AVATAR_OPTIONS } from '~/types/medical'
 import type { Patient } from '~/types/medical'
 import { generateId, usePatientsStore } from '~/stores/patients'
 import { useDoctorStore, AVAILABLE_BADGES } from '~/stores/doctor'
+import { Input } from '~/components/ui/input'
 
 export function meta() {
 	return [
@@ -116,11 +117,10 @@ export default function NewPatient() {
 							<label className="mb-2 block text-lg font-semibold text-text-dark">
 								Patient Name
 							</label>
-							<input
-								type="text"
+							<Input
 								name="name"
 								required
-								className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
+								className="w-full rounded-2xl border-2 border-medical-blue py-3 text-lg focus:border-doctor-blue"
 								placeholder="Enter a fun name like 'Bella the Bear'"
 							/>
 						</div>

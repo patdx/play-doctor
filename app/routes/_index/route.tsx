@@ -6,7 +6,7 @@ export function meta() {
 		{
 			name: 'description',
 			content:
-				'A colorful, fun medical simulation app where kids can play pretend doctor!',
+				'A realistic medical simulation app where kids can learn about being a doctor!',
 		},
 	]
 }
@@ -21,8 +21,8 @@ export default function Home() {
 						🏥 Play Doctor
 					</h1>
 					<p className="mb-8 text-xl text-white drop-shadow-md">
-						Welcome to your magical medical clinic! Help patients feel better
-						with fun treatments and friendly care.
+						Welcome to your medical clinic! Help patients feel better
+						with treatments and friendly care.
 					</p>
 				</div>
 
@@ -39,7 +39,7 @@ export default function Home() {
 								My Patients
 							</h2>
 							<p className="text-warm-gray">
-								See all your patients and their colorful medical records
+								See all your patients and their medical records
 							</p>
 						</Link>
 
@@ -67,7 +67,7 @@ export default function Home() {
 								Medical Kit
 							</h2>
 							<p className="text-warm-gray">
-								Use fun medical tools to diagnose and treat patients
+								Use medical tools to diagnose and treat patients
 							</p>
 						</Link>
 
@@ -78,7 +78,7 @@ export default function Home() {
 						>
 							<div className="mb-4 text-6xl">💰</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
-								Billing Fun
+								Billing Office
 							</h2>
 							<p className="text-warm-gray">
 								Practice with play money and receipts
@@ -123,12 +123,12 @@ export default function Home() {
 							<div className="text-sm">Patients Helped</div>
 						</div>
 						<div>
-							<div className="text-3xl font-bold">Level 1</div>
-							<div className="text-sm">Doctor Level</div>
+							<div className="text-3xl font-bold">Beginner</div>
+							<div className="text-sm">Experience Level</div>
 						</div>
 						<div>
 							<div className="text-3xl font-bold">0</div>
-							<div className="text-sm">Badges Earned</div>
+							<div className="text-sm">Certificates Earned</div>
 						</div>
 					</div>
 				</div>
@@ -136,8 +136,8 @@ export default function Home() {
 				{/* Welcome Message */}
 				<div className="mt-8 text-center">
 					<p className="text-lg text-white/90">
-						👨‍⚕️ Ready to be the best doctor ever? Let's help some patients feel
-						better! 👩‍⚕️
+						👨‍⚕️ Ready to help patients? Let's start seeing patients
+						and make them feel better! 👩‍⚕️
 					</p>
 				</div>
 			</div>

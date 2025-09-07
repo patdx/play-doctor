@@ -8,7 +8,7 @@ export function meta() {
 		{ title: 'Medical Tools - Play Doctor' },
 		{
 			name: 'description',
-			content: 'Use fun medical tools to examine and treat patients',
+			content: 'Use medical tools to examine and treat patients',
 		},
 	]
 }
@@ -21,7 +21,7 @@ export default function MedicalTools() {
 	const medicalTools: MedicalTool[] = [
 		{
 			id: 'stethoscope',
-			name: 'Magic Stethoscope',
+			name: 'Stethoscope',
 			description: 'Listen to heartbeats and breathing sounds',
 			icon: '🩺',
 			soundEffect: 'lub-dub, lub-dub',
@@ -29,7 +29,7 @@ export default function MedicalTools() {
 		},
 		{
 			id: 'thermometer',
-			name: 'Temperature Wand',
+			name: 'Thermometer',
 			description: 'Check if patients have a fever',
 			icon: '🌡️',
 			soundEffect: 'beep beep!',
@@ -37,8 +37,8 @@ export default function MedicalTools() {
 		},
 		{
 			id: 'blood-pressure',
-			name: 'Squeeze Checker',
-			description: 'Measure blood pressure with fun sounds',
+			name: 'Blood Pressure Cuff',
+			description: 'Measure blood pressure',
 			icon: '🩸',
 			soundEffect: 'whoosh... puff!',
 			isUnlocked: true,
@@ -53,10 +53,10 @@ export default function MedicalTools() {
 		},
 		{
 			id: 'reflex-hammer',
-			name: 'Tickle Hammer',
+			name: 'Reflex Hammer',
 			description: 'Test reflexes with gentle taps',
 			icon: '🔨',
-			soundEffect: 'tap tap giggle!',
+			soundEffect: 'tap tap',
 			isUnlocked: true,
 		},
 		{
@@ -69,18 +69,18 @@ export default function MedicalTools() {
 		},
 		{
 			id: 'bandages',
-			name: 'Healing Bandages',
-			description: 'Apply colorful bandages to cuts and scrapes',
+			name: 'Bandages',
+			description: 'Apply bandages to cuts and scrapes',
 			icon: '🩹',
 			soundEffect: 'rip... stick!',
 			isUnlocked: true,
 		},
 		{
 			id: 'medicine',
-			name: 'Yummy Medicine',
-			description: 'Give patients tasty medicine',
+			name: 'Medicine',
+			description: 'Give patients medicine',
 			icon: '💊',
-			soundEffect: 'gulp... mmm!',
+			soundEffect: 'gulp',
 			isUnlocked: true,
 		},
 	]
@@ -122,7 +122,7 @@ export default function MedicalTools() {
 						🩺 Medical Tool Kit
 					</h1>
 					<p className="mt-2 text-lg text-warm-gray">
-						Choose your magical medical tools to examine and help patients feel
+						Choose your medical tools to examine and help patients feel
 						better!
 					</p>
 				</div>
@@ -224,15 +224,15 @@ export default function MedicalTools() {
 										<div className="space-y-2 text-sm">
 											<div className="flex justify-between">
 												<span>Rest:</span>
-												<span className="font-medium">Lots of fun!</span>
+												<span className="font-medium">Plenty of sleep</span>
 											</div>
 											<div className="flex justify-between">
 												<span>Medicine:</span>
-												<span className="font-medium">Smiles daily</span>
+												<span className="font-medium">As prescribed</span>
 											</div>
 											<div className="flex justify-between">
 												<span>Follow-up:</span>
-												<span className="font-medium">When needed</span>
+												<span className="font-medium">In 3 days</span>
 											</div>
 										</div>
 									</div>
@@ -243,7 +243,7 @@ export default function MedicalTools() {
 											onClick={resetExamination}
 											className="w-full rounded-xl bg-doctor-green py-3 font-semibold text-white transition-colors hover:bg-doctor-green-dark"
 										>
-											🎉 Patient Treated Successfully!
+											✓ Patient Treated
 										</button>
 										<button
 											onClick={resetExamination}
@@ -261,8 +261,7 @@ export default function MedicalTools() {
 							<div className="mt-6 rounded-2xl bg-white/20 p-6 text-center backdrop-blur-sm">
 								<div className="mb-2 text-4xl">😊</div>
 								<p className="font-medium text-white">
-									"Thank you, Dr. {Math.random() > 0.5 ? 'Awesome' : 'Amazing'}!
-									I feel so much better now!"
+									"Thank you, Doctor. I'm feeling better."
 								</p>
 								<p className="mt-2 text-sm text-white/80">- Happy Patient</p>
 							</div>
@@ -273,7 +272,7 @@ export default function MedicalTools() {
 				{/* Medical Fun Facts */}
 				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
 					<h3 className="mb-4 text-xl font-bold text-text-dark">
-						🧠 Fun Medical Facts for Young Doctors!
+						🧠 Medical Facts for Young Doctors!
 					</h3>
 					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 						<div className="rounded-lg bg-medical-light p-4">

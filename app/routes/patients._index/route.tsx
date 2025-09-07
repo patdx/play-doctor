@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { useState, useMemo } from 'react'
 import type { Patient } from '~/types/medical'
 import { usePatientsStore } from '~/stores/patients'
+import { Input } from '~/components/ui/input'
 
 export function meta() {
 	return [
@@ -79,12 +80,11 @@ export default function Patients() {
 				<div className="mb-8 rounded-2xl bg-white p-6 shadow-lg">
 					<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div className="flex-1">
-							<input
-								type="text"
+							<Input
 								placeholder="Search patients by name..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="w-full rounded-full border-2 border-medical-blue px-4 py-2 text-lg focus:border-doctor-blue focus:outline-none"
+								className="w-full rounded-full border-2 border-medical-blue py-2 text-lg focus:border-doctor-blue"
 							/>
 						</div>
 						<div className="flex gap-4">
