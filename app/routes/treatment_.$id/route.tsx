@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { useAppointmentsStore } from '~/stores/appointments'
 import { usePatientsStore } from '~/stores/patients'
+import { useBillingStore } from '~/stores/billing'
 import { KID_FRIENDLY_CONDITIONS, TREATMENTS } from '~/types/medical'
+import type { Bill, BillItem } from '~/types/medical'
 import { generateId } from '~/stores/patients'
 
 export function meta({ params }: { params: { id: string } }) {
@@ -24,6 +26,7 @@ export default function TreatmentDetail() {
 	)
 	const getPatient = usePatientsStore((state) => state.getPatient)
 	const updatePatient = usePatientsStore((state) => state.updatePatient)
+	const addBill = useBillingStore((state) => state.addBill)
 
 	const appointment = getAppointment(id || '')
 	const patient = appointment ? getPatient(appointment.patientId) : null
@@ -46,6 +49,8 @@ export default function TreatmentDetail() {
 		bloodPressure: '',
 	})
 
+	const [selectedFeeling, setSelectedFeeling] = useState('')
+
 	useEffect(() => {
 		if (!appointment) {
 			navigate('/treatment')
@@ -66,7 +71,7 @@ export default function TreatmentDetail() {
 						</p>
 						<Link
 							to="/treatment"
-							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 						>
 							Back to Treatment Room
 						</Link>
@@ -78,6 +83,77 @@ export default function TreatmentDetail() {
 
 	const handleVitalsUpdate = (field: string, value: string) => {
 		setVitals((prev) => ({ ...prev, [field]: value }))
+	}
+
+	const generateBillFromTreatment = (): Bill => {
+		const billItems: BillItem[] = []
+
+		// Base consultation fee based on appointment type
+		const consultationFee =
+			appointment.type === 'emergency'
+				? 75
+				: appointment.type === 'followup'
+					? 35
+					: 50
+
+		billItems.push({
+			id: generateId(),
+			description: `${
+				appointment.type === 'emergency'
+					? 'Emergency'
+					: appointment.type === 'followup'
+						? 'Follow-up'
+						: appointment.type === 'vaccine'
+							? 'Vaccination'
+							: 'Wellness'
+			} Consultation`,
+			quantity: 1,
+			unitPrice: consultationFee,
+			total: consultationFee,
+			category: 'consultation',
+		})
+
+		// Add treatment cost if treatment was provided
+		if (treatmentData.treatment) {
+			const treatmentCost = 15
+			billItems.push({
+				id: generateId(),
+				description: treatmentData.treatment,
+				quantity: 1,
+				unitPrice: treatmentCost,
+				total: treatmentCost,
+				category: 'treatment',
+			})
+		}
+
+		// Add prescription cost if prescribed
+		if (treatmentData.prescription) {
+			const prescriptionCost = 10
+			billItems.push({
+				id: generateId(),
+				description: `Prescription: ${treatmentData.prescription}`,
+				quantity: 1,
+				unitPrice: prescriptionCost,
+				total: prescriptionCost,
+				category: 'medicine',
+			})
+		}
+
+		const subtotal = billItems.reduce((sum, item) => sum + item.total, 0)
+		const discount = 0 // Could add logic for discounts later
+		const total = subtotal - discount
+
+		return {
+			id: generateId(),
+			patientId: patient!.id,
+			appointmentId: appointment.id,
+			items: billItems,
+			subtotal,
+			discount,
+			total,
+			paymentStatus: 'pending',
+			createdAt: new Date(),
+		}
 	}
 
 	const handleTreatmentSubmit = (e: React.FormEvent) => {
@@ -99,11 +175,15 @@ export default function TreatmentDetail() {
 			medicalHistory: [...patient.medicalHistory, medicalRecord],
 		})
 
+		// Generate and add bill
+		const bill = generateBillFromTreatment()
+		addBill(bill)
+
 		// Complete the appointment
 		completeAppointment(appointment.id)
 
-		// Navigate back to treatment room
-		navigate('/treatment')
+		// Navigate to billing page
+		navigate('/billing')
 	}
 
 	const getStepTitle = () => {
@@ -168,7 +248,7 @@ export default function TreatmentDetail() {
 					</div>
 					<div className="h-2 overflow-hidden rounded-full bg-soft-gray">
 						<div
-							className="h-full bg-doctor-green transition-all duration-300"
+							className="h-full bg-doctor-green transition duration-300"
 							style={{ width: `${(currentStep / 4) * 100}%` }}
 						/>
 					</div>
@@ -235,7 +315,12 @@ export default function TreatmentDetail() {
 										].map((feeling) => (
 											<button
 												key={feeling}
-												className="rounded-2xl border-2 border-medical-blue p-4 text-left transition-all duration-200 hover:border-doctor-blue hover:bg-medical-light"
+												onClick={() => setSelectedFeeling(feeling)}
+												className={`rounded-2xl border-2 p-4 text-left transition duration-200 hover:border-doctor-blue hover:bg-medical-light ${
+													selectedFeeling === feeling
+														? 'border-doctor-green bg-doctor-green/10'
+														: 'border-medical-blue'
+												}`}
 											>
 												<div className="text-lg">{feeling}</div>
 											</button>
@@ -246,7 +331,7 @@ export default function TreatmentDetail() {
 								<div className="flex justify-end">
 									<button
 										onClick={() => setCurrentStep(2)}
-										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 									>
 										Continue to Vitals →
 									</button>
@@ -331,7 +416,7 @@ export default function TreatmentDetail() {
 								</button>
 								<button
 									onClick={() => setCurrentStep(3)}
-									className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+									className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 								>
 									Continue to Diagnosis →
 								</button>
@@ -440,7 +525,7 @@ export default function TreatmentDetail() {
 									<button
 										type="button"
 										onClick={() => setCurrentStep(4)}
-										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 									>
 										Review & Complete →
 									</button>
@@ -498,10 +583,15 @@ export default function TreatmentDetail() {
 									<h4 className="mb-2 text-lg font-semibold text-doctor-green">
 										Ready to complete the visit!
 									</h4>
-									<p className="text-warm-gray">
-										This will add the medical record to {patient.name}'s file
-										and mark the appointment as completed.
+									<p className="mb-3 text-warm-gray">
+										This will add the medical record to {patient.name}'s file,
+										generate a bill, and take you to billing.
 									</p>
+									<div className="flex items-center justify-center gap-2 text-sm text-doctor-blue">
+										<span>📋 Medical Record</span>
+										<span>→</span>
+										<span>💰 Billing</span>
+									</div>
 								</div>
 
 								<div className="flex justify-between">
@@ -513,9 +603,9 @@ export default function TreatmentDetail() {
 									</button>
 									<button
 										onClick={handleTreatmentSubmit}
-										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+										className="rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 									>
-										✅ Complete Visit
+										✅ Complete & Bill
 									</button>
 								</div>
 							</div>

@@ -49,8 +49,8 @@ This is a **Play Doctor App** - a fun, colorful simulation for kids to play pret
 
 - **Reusable UI components** in `app/components/`
   - `Button.tsx` - Colorful, rounded buttons with sound effects
-  - `PatientCard.tsx` - Animated patient cards with avatars
-  - `MedicalTool.tsx` - Interactive tool components
+  - `PatientCard.tsx` - Patient cards with character avatars
+  - `MedicalTool.tsx` - Interactive medical tool components
   - `AppointmentSlot.tsx` - Drag-and-drop calendar slots
 
 ### Data Management
@@ -63,9 +63,9 @@ This is a **Play Doctor App** - a fun, colorful simulation for kids to play pret
 ### Sound and Animation Guidelines
 
 - **Optional sounds**: Always include mute/unmute toggle
-- **Gentle animations**: Use `transition-all duration-300` for smooth effects
-- **Loading states**: Fun spinners and progress indicators
-- **Success feedback**: Celebration animations for completed actions
+- **Smooth animations**: Use `transition duration-300` for smooth effects
+- **Loading states**: Clear progress indicators
+- **Success feedback**: Positive feedback animations for completed actions
 
 ### Accessibility Requirements
 
@@ -97,7 +97,7 @@ app/routes/
 
 - **PascalCase** for all components
 - **Descriptive names**: `PatientRegistrationForm` not `Form`
-- **Kid-friendly suffixes**: `MagicStethoscope`, `HappyPatientCard`
+- **Clear, professional names**: `StethoscopeTool`, `PatientCard`
 - **Medical prefixes**: `MedicalToolKit`, `DiagnosisCard`
 
 ### State Management
@@ -109,10 +109,10 @@ app/routes/
 
 ### Testing Considerations
 
-- **Kid-friendly test scenarios**: Happy path testing with positive outcomes
+- **Realistic test scenarios**: Standard user flows with positive outcomes
 - **Accessibility testing**: Screen reader and keyboard navigation
 - **Touch interaction testing**: Mobile and tablet compatibility
-- **Performance testing**: Fast loading for impatient young users
+- **Performance testing**: Fast loading for smooth user experience
 
 ### Security & Safety
 

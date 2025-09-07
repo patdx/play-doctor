@@ -263,7 +263,7 @@ export default function NewAppointment() {
 												key={type}
 												type="button"
 												onClick={() => setAppointmentType(type)}
-												className={`rounded-2xl border-2 p-4 text-left transition-all duration-200 ${
+												className={`rounded-2xl border-2 p-4 text-left transition duration-200 ${
 													appointmentType === type
 														? 'border-doctor-blue bg-medical-light shadow-md'
 														: 'border-soft-gray hover:border-medical-blue'
@@ -315,27 +315,19 @@ export default function NewAppointment() {
 						<div className="flex gap-4">
 							<Link
 								to="/appointments"
-								className="flex-1 rounded-2xl bg-warm-gray py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:bg-gray-500"
+								className="flex-1 rounded-2xl bg-warm-gray py-4 text-center text-lg font-semibold text-white transition duration-300 hover:bg-gray-500"
 							>
 								Cancel
 							</Link>
 							<button
 								type="submit"
 								disabled={!selectedPatient || patients.length === 0}
-								className="flex-1 rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark disabled:cursor-not-allowed disabled:opacity-50"
+								className="flex-1 rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark disabled:cursor-not-allowed disabled:opacity-50"
 							>
 								📅 Book Appointment
 							</button>
 						</div>
 					</form>
-				</div>
-
-				{/* Helpful tip */}
-				<div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white/20 p-6 text-center backdrop-blur-sm">
-					<div className="mb-2 text-4xl">🌟</div>
-					<p className="font-medium text-white">
-						Tip: Emergency appointments take longer, but vaccines are quick!
-					</p>
 				</div>
 			</div>
 		</div>

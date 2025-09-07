@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { superjsonStorage } from '~/lib/storage'
 import type { QueueEntry } from '~/types/medical'
 
 interface QueueStore {
@@ -83,15 +84,7 @@ export const useQueueStore = create<QueueStore>()(
 		}),
 		{
 			name: 'play-doctor-queue',
-			onRehydrateStorage: () => (state) => {
-				if (state?.queue) {
-					// Convert date strings back to Date objects after rehydration
-					state.queue = state.queue.map((entry) => ({
-						...entry,
-						checkedInAt: new Date(entry.checkedInAt),
-					}))
-				}
-			},
+			storage: superjsonStorage,
 		},
 	),
 )

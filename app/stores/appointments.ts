@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { superjsonStorage } from '~/lib/storage'
 import type { Appointment } from '~/types/medical'
 
 interface AppointmentStore {
@@ -15,14 +16,10 @@ interface AppointmentStore {
 	startTreatment: (id: string) => void
 	completeAppointment: (id: string) => void
 	cancelAppointment: (id: string) => void
+	addWalkInAppointment: (patientId: string, patientName: string, appointmentType: Appointment['type']) => void
 	getTodayAppointments: () => Appointment[]
 	getReadyForTreatment: () => Appointment[]
 	clearAllAppointments: () => void
-}
-
-// Utility function to safely convert date to Date object
-const safeDate = (date: Date | string): Date => {
-	return date instanceof Date ? date : new Date(date)
 }
 
 export const useAppointmentsStore = create<AppointmentStore>()(
@@ -55,10 +52,9 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				get().appointments.find((appointment) => appointment.id === id),
 
 			getAppointmentsByDate: (date) => {
-				const targetDate = safeDate(date).toDateString()
+				const targetDate = date.toDateString()
 				return get().appointments.filter(
-					(appointment) =>
-						safeDate(appointment.date).toDateString() === targetDate,
+					(appointment) => appointment.date.toDateString() === targetDate,
 				)
 			},
 
@@ -112,7 +108,7 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				const today = new Date()
 				return get().appointments.filter(
 					(appointment) =>
-						safeDate(appointment.date).toDateString() === today.toDateString(),
+						appointment.date.toDateString() === today.toDateString(),
 				)
 			},
 
@@ -120,17 +116,42 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				const today = new Date()
 				return get().appointments.filter(
 					(appointment) =>
-						safeDate(appointment.date).toDateString() ===
-							today.toDateString() &&
+						appointment.date.toDateString() === today.toDateString() &&
 						(appointment.status === 'checked-in' ||
 							appointment.status === 'in-progress'),
 				)
+			},
+
+			addWalkInAppointment: (patientId, patientName, appointmentType) => {
+				const now = new Date()
+				const timeString = now.toLocaleTimeString('en-US', {
+					hour: 'numeric',
+					minute: '2-digit',
+					hour12: true,
+				})
+				
+				const walkInAppointment: Appointment = {
+					id: `walkin-${Date.now()}`,
+					patientId,
+					patientName,
+					date: now,
+					time: timeString,
+					type: appointmentType,
+					status: 'checked-in',
+					duration: 30,
+					notes: 'Walk-in appointment',
+				}
+				
+				set((state) => ({
+					appointments: [...state.appointments, walkInAppointment],
+				}))
 			},
 
 			clearAllAppointments: () => set({ appointments: [] }),
 		}),
 		{
 			name: 'play-doctor-appointments',
+			storage: superjsonStorage,
 		},
 	),
 )

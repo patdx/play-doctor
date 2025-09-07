@@ -158,7 +158,7 @@ export default function TreatmentRoom() {
 									return (
 										<div
 											key={appointment.id}
-											className={`rounded-2xl border-2 p-6 shadow-lg transition-all duration-300 hover:shadow-xl ${getAppointmentColor(appointment.type)}`}
+											className={`rounded-2xl border-2 p-6 shadow-lg transition duration-300 hover:shadow-xl ${getAppointmentColor(appointment.type)}`}
 										>
 											<div className="flex flex-col items-center text-center">
 												<div className="mb-4 text-5xl">
@@ -191,7 +191,7 @@ export default function TreatmentRoom() {
 												</div>
 												<Link
 													to={`/treatment/${appointment.id}`}
-													className="w-full rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+													className="w-full rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 												>
 													{appointment.status === 'in-progress'
 														? 'Continue Treatment'
@@ -296,25 +296,25 @@ export default function TreatmentRoom() {
 					<div className="flex flex-wrap gap-4">
 						<Link
 							to="/checkin"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							🏥 Check-in Room
 						</Link>
 						<Link
 							to="/patients"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							👥 All Patients
 						</Link>
 						<Link
 							to="/appointments"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							📅 Schedule
 						</Link>
 						<Link
 							to="/medical-tools"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							🩺 Medical Tools
 						</Link>

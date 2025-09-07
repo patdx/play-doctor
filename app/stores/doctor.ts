@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { superjsonStorage } from '~/lib/storage'
 import type { DoctorProgress, Badge } from '~/types/medical'
 
 interface DoctorStore {
@@ -95,6 +96,7 @@ export const useDoctorStore = create<DoctorStore>()(
 		}),
 		{
 			name: 'play-doctor-progress',
+			storage: superjsonStorage,
 		},
 	),
 )

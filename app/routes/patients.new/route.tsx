@@ -152,7 +152,7 @@ export default function NewPatient() {
 										key={avatar}
 										type="button"
 										onClick={() => setSelectedAvatar(avatar)}
-										className={`rounded-2xl p-3 text-3xl transition-all duration-200 hover:scale-110 ${
+										className={`rounded-2xl p-3 text-3xl transition duration-200 hover:scale-110 ${
 											selectedAvatar === avatar
 												? 'bg-doctor-blue shadow-lg'
 												: 'bg-soft-gray hover:bg-medical-blue'
@@ -176,7 +176,7 @@ export default function NewPatient() {
 										key={color.name}
 										type="button"
 										onClick={() => setSelectedColor(color.name)}
-										className={`rounded-2xl p-4 transition-all duration-200 hover:scale-110 ${
+										className={`rounded-2xl p-4 transition duration-200 hover:scale-110 ${
 											selectedColor === color.name
 												? 'shadow-lg ring-4 ring-text-dark'
 												: 'hover:shadow-md'
@@ -196,13 +196,13 @@ export default function NewPatient() {
 						<div className="flex gap-4">
 							<Link
 								to="/patients"
-								className="flex-1 rounded-2xl bg-warm-gray py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:bg-gray-500"
+								className="flex-1 rounded-2xl bg-warm-gray py-4 text-center text-lg font-semibold text-white transition duration-300 hover:bg-gray-500"
 							>
 								Cancel
 							</Link>
 							<button
 								type="submit"
-								className="flex-1 rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+								className="flex-1 rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 							>
 								🎉 Add Patient
 							</button>

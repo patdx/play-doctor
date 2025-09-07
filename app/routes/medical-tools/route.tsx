@@ -139,7 +139,7 @@ export default function MedicalTools() {
 										key={tool.id}
 										onClick={() => handleToolClick(tool)}
 										disabled={!tool.isUnlocked || selectedTool !== null}
-										className={`group rounded-2xl p-6 text-center transition-all duration-300 ${
+										className={`group rounded-2xl p-6 text-center transition duration-300 ${
 											selectedTool === tool.id
 												? 'scale-105 bg-doctor-blue text-white shadow-xl'
 												: tool.isUnlocked

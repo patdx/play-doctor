@@ -15,9 +15,12 @@ export function meta() {
 
 export default function CheckIn() {
 	const appointments = useAppointmentsStore((state) => state.appointments)
+	const checkInPatient = useAppointmentsStore((state) => state.checkInPatient)
 	const patients = usePatientsStore((state) => state.patients)
 	const [selectedDate, setSelectedDate] = useState(new Date())
-	const [todayAppointments, setTodayAppointments] = useState([])
+	const [todayAppointments, setTodayAppointments] = useState<
+		typeof appointments
+	>([])
 
 	// Filter appointments for today in useEffect to avoid re-renders
 	useEffect(() => {
@@ -181,8 +184,7 @@ export default function CheckIn() {
 														</div>
 														<button
 															onClick={() => {
-																// Simple check-in without store update for now
-																console.log('Check in:', appointment.id)
+																checkInPatient(appointment.id)
 															}}
 															className="rounded-full bg-doctor-green px-4 py-2 text-sm font-medium text-white hover:bg-doctor-green-dark"
 														>
@@ -303,20 +305,26 @@ export default function CheckIn() {
 					</h3>
 					<div className="flex flex-wrap gap-4">
 						<Link
+							to="/walkins"
+							className="rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+						>
+							🚶‍♂️ Add Walk-in
+						</Link>
+						<Link
 							to="/treatment"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							🩺 Treatment Room
 						</Link>
 						<Link
 							to="/patients"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							👥 All Patients
 						</Link>
 						<Link
 							to="/appointments"
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							📅 Schedule
 						</Link>

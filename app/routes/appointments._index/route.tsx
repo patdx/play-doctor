@@ -75,7 +75,7 @@ export default function Appointments() {
 						</h1>
 						<Link
 							to="/appointments/new"
-							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Book Appointment
 						</Link>
@@ -202,7 +202,7 @@ export default function Appointments() {
 												) : (
 													<Link
 														to={`/appointments/new?date=${selectedDate.toISOString().split('T')[0]}&time=${time}`}
-														className="block rounded-lg border-2 border-dashed border-medical-blue p-3 text-center text-warm-gray transition-all duration-200 hover:border-doctor-blue hover:bg-medical-light"
+														className="block rounded-lg border-2 border-dashed border-medical-blue p-3 text-center text-warm-gray transition duration-200 hover:border-doctor-blue hover:bg-medical-light"
 													>
 														+ Available
 													</Link>

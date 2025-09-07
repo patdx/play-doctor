@@ -87,29 +87,6 @@ export default function Reports() {
 						</Link>
 					</div>
 				</div>
-
-				{/* Fun Facts */}
-				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-xl font-bold text-text-dark">
-						🎓 Doctor Tips
-					</h3>
-					<div className="grid gap-4 md:grid-cols-2">
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">💡</div>
-							<p className="text-sm text-text-dark">
-								The more patients you help, the faster you'll level up your
-								doctor skills!
-							</p>
-						</div>
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">⚡</div>
-							<p className="text-sm text-text-dark">
-								Try using different medical tools to unlock special
-								achievements!
-							</p>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	)

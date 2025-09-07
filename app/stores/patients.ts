@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { superjsonStorage } from '~/lib/storage'
 import type { Patient } from '~/types/medical'
 
 interface PatientStore {
@@ -145,20 +146,7 @@ export const usePatientsStore = create<PatientStore>()(
 		}),
 		{
 			name: 'play-doctor-patients',
-			onRehydrateStorage: () => (state) => {
-				if (state?.patients) {
-					// Convert date strings back to Date objects after rehydration
-					state.patients = state.patients.map((patient) => ({
-						...patient,
-						createdAt: new Date(patient.createdAt),
-						updatedAt: new Date(patient.updatedAt),
-						medicalHistory: patient.medicalHistory.map((history) => ({
-							...history,
-							visitDate: new Date(history.visitDate),
-						})),
-					}))
-				}
-			},
+			storage: superjsonStorage,
 		},
 	),
 )

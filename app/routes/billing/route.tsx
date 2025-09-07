@@ -81,7 +81,7 @@ export default function Billing() {
 						</h1>
 						<button
 							onClick={() => console.log('Create new bill - coming soon!')}
-							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Create New Bill
 						</button>
@@ -123,7 +123,7 @@ export default function Billing() {
 										<div
 											key={bill.id}
 											onClick={() => setSelectedBill(bill)}
-											className={`cursor-pointer rounded-xl border-2 p-4 transition-all duration-200 ${
+											className={`cursor-pointer rounded-xl border-2 p-4 transition duration-200 ${
 												selectedBill?.id === bill.id
 													? 'border-doctor-blue bg-medical-light shadow-md'
 													: 'border-soft-gray hover:border-medical-blue hover:shadow-sm'
@@ -250,7 +250,7 @@ export default function Billing() {
 															<button
 																key={method}
 																onClick={() => setPaymentMethod(method)}
-																className={`rounded-lg p-3 text-sm font-medium transition-all ${
+																className={`rounded-lg p-3 text-sm font-medium transition ${
 																	paymentMethod === method
 																		? 'bg-doctor-blue text-white'
 																		: 'bg-soft-gray hover:bg-medical-blue'
@@ -311,36 +311,6 @@ export default function Billing() {
 								</div>
 							</div>
 						)}
-					</div>
-				</div>
-
-				{/* Fun Money Facts */}
-				<div className="mt-8 rounded-2xl bg-white p-6 shadow-lg">
-					<h3 className="mb-4 text-xl font-bold text-text-dark">
-						🎓 Fun Facts About Medical Billing
-					</h3>
-					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">🏥</div>
-							<p className="text-sm text-text-dark">
-								In real hospitals, computers help doctors keep track of all the
-								bills automatically!
-							</p>
-						</div>
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">📋</div>
-							<p className="text-sm text-text-dark">
-								Medical bills help hospitals buy new equipment to help more
-								patients feel better!
-							</p>
-						</div>
-						<div className="rounded-lg bg-medical-light p-4">
-							<div className="mb-2 text-2xl">💡</div>
-							<p className="text-sm text-text-dark">
-								This is just pretend money - real medical visits should always
-								involve grown-ups!
-							</p>
-						</div>
 					</div>
 				</div>
 			</div>

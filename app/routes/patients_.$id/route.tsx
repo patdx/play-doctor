@@ -50,7 +50,7 @@ export default function PatientDetail() {
 						</p>
 						<Link
 							to="/patients"
-							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 						>
 							Back to Patients
 						</Link>
@@ -144,7 +144,7 @@ export default function PatientDetail() {
 						</h3>
 						<button
 							onClick={() => setShowAddRecord(!showAddRecord)}
-							className="rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+							className="rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 						>
 							{showAddRecord ? 'Cancel' : '+ Add Visit Record'}
 						</button>
@@ -213,7 +213,7 @@ export default function PatientDetail() {
 
 								<button
 									type="submit"
-									className="w-full rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+									className="w-full rounded-2xl bg-doctor-green py-4 text-lg font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 								>
 									🎉 Add Medical Record
 								</button>
@@ -241,7 +241,7 @@ export default function PatientDetail() {
 								.map((record) => (
 									<div
 										key={record.id}
-										className="rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+										className="rounded-2xl bg-white p-6 shadow-lg transition duration-300 hover:shadow-xl"
 									>
 										<div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
 											<div className="mb-4 sm:mb-0">
@@ -281,7 +281,7 @@ export default function PatientDetail() {
 						<Link
 							to="/appointments/new"
 							state={{ patientId: patient.id }}
-							className="rounded-full bg-doctor-blue px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-blue-dark"
+							className="rounded-full bg-doctor-blue px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-blue-dark"
 						>
 							+ Schedule Appointment
 						</Link>
@@ -311,7 +311,7 @@ export default function PatientDetail() {
 								.map((appointment) => (
 									<div
 										key={appointment.id}
-										className="rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+										className="rounded-2xl bg-white p-6 shadow-lg transition duration-300 hover:shadow-xl"
 									>
 										<div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
 											<div className="mb-4 sm:mb-0">
@@ -387,21 +387,21 @@ export default function PatientDetail() {
 						<Link
 							to="/appointments/new"
 							state={{ patientId: patient.id }}
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							📅 Schedule Appointment
 						</Link>
 						<Link
 							to="/medical-tools"
 							state={{ patientId: patient.id }}
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							🩺 Use Medical Tools
 						</Link>
 						<Link
 							to="/billing"
 							state={{ patientId: patient.id }}
-							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition-all duration-300 hover:scale-105"
+							className="rounded-full bg-white px-6 py-3 font-semibold text-doctor-blue shadow-lg transition duration-300 hover:scale-105"
 						>
 							💰 Create Bill
 						</Link>

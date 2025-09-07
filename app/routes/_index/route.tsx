@@ -32,7 +32,7 @@ export default function Home() {
 						{/* Check-in */}
 						<Link
 							to="/checkin"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">🏥</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -46,7 +46,7 @@ export default function Home() {
 						{/* Patients */}
 						<Link
 							to="/patients"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">👥</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -60,7 +60,7 @@ export default function Home() {
 						{/* Appointments */}
 						<Link
 							to="/appointments"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">📅</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -74,7 +74,7 @@ export default function Home() {
 						{/* Medical Tools */}
 						<Link
 							to="/medical-tools"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">🩺</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -88,7 +88,7 @@ export default function Home() {
 						{/* Billing */}
 						<Link
 							to="/billing"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">💰</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -102,7 +102,7 @@ export default function Home() {
 						{/* Reports */}
 						<Link
 							to="/reports"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">📊</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">
@@ -113,10 +113,24 @@ export default function Home() {
 							</p>
 						</Link>
 
+						{/* Walk-in Registration */}
+						<Link
+							to="/walkins"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
+						>
+							<div className="mb-4 text-6xl">🚶‍♂️</div>
+							<h2 className="mb-2 text-2xl font-bold text-text-dark">
+								Walk-in Registration
+							</h2>
+							<p className="text-warm-gray">
+								Register patients without appointments for immediate care
+							</p>
+						</Link>
+
 						{/* Settings */}
 						<Link
 							to="/settings"
-							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+							className="group transform rounded-3xl bg-white p-8 text-center shadow-xl transition duration-300 hover:scale-105 hover:shadow-2xl"
 						>
 							<div className="mb-4 text-6xl">⚙️</div>
 							<h2 className="mb-2 text-2xl font-bold text-text-dark">

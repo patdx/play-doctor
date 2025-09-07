@@ -69,7 +69,7 @@ export default function Patients() {
 						</h1>
 						<Link
 							to="/patients/new"
-							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-happy-orange-dark"
+							className="rounded-full bg-happy-orange px-6 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-happy-orange-dark"
 						>
 							+ Add New Patient
 						</Link>
@@ -124,7 +124,7 @@ export default function Patients() {
 						</p>
 						<Link
 							to="/patients/new"
-							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
+							className="inline-block rounded-full bg-doctor-green px-8 py-3 font-semibold text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 						>
 							Add Your First Patient
 						</Link>
@@ -155,7 +155,7 @@ function PatientCard({
 	return (
 		<Link
 			to={`/patients/${patient.id}`}
-			className="group transform rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+			className="group transform rounded-2xl bg-white p-6 shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl"
 		>
 			{/* Patient Avatar and Star */}
 			<div className="mb-4 flex items-start justify-between">

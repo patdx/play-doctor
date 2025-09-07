@@ -10,8 +10,8 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
   - Fun character avatars (animals, cartoon characters)
   - Simple form with name, age, favorite color
   - Photo upload simulation (use cute placeholder avatars)
-  - Patient ID cards with stickers and badges
-  - Medical history as fun stories ("fell off swing", "ate too much candy")
+  - Patient ID cards with basic information
+  - Medical history with common kid experiences ("fell off swing", "ate too much candy")
 
 - **Patient Database**
   - Visual patient cards with colorful borders
@@ -40,8 +40,8 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
 
 - **Welcome Screen**
   - Large, colorful buttons for easy navigation
-  - Animated mascot character (friendly doctor bear/cat)
-  - Background music toggle (kid-friendly tunes)
+  - Friendly doctor character illustration
+  - Background music toggle (gentle tunes)
   - Weather display with health tips
 
 - **Check-in Kiosk**
@@ -62,9 +62,9 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
   - Flashlight for "checking ears and throats"
 
 - **Diagnosis Generator**
-  - Fun, kid-friendly conditions ("gigglitis", "cookie belly")
+  - Common kid conditions (ear infection, stomach ache, sore throat)
   - Treatment recommendations (rest, medicine, bandaids)
-  - Prescription pad with doctor's "signature"
+  - Prescription pad with doctor's signature
   - Medical certificate printer
 
 ### 💰 Billing & Payment Simulation
@@ -115,7 +115,7 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
   - Clinic decoration and layout
   - Personalized name tags and badges
   - Custom appointment sounds and alerts
-  - Theme selection (animal hospital, superhero clinic)
+  - Theme selection (pediatric clinic, family practice)
 
 ### 📊 Reports & Analytics (Kid-Friendly)
 
@@ -206,14 +206,14 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
 
 - **Primary**: Bright, cheerful blues and greens
 - **Secondary**: Warm oranges and yellows
-- **Accents**: Purple and pink for fun elements
+- **Accents**: Purple and pink for highlights
 - **Medical**: Clean whites and light blues
 - **Emergency**: Gentle reds (not scary)
 
 ### Typography
 
-- Large, rounded fonts easy for kids to read
-- Comic-style fonts for fun elements
+- Large, clear fonts easy for kids to read
+- Friendly fonts for headings
 - Clear, professional fonts for medical records
 - High contrast for accessibility
 
@@ -228,10 +228,10 @@ A colorful, fun simulation app for kids to play pretend doctor with interactive 
 
 ### Sound Design
 
-- Gentle, non-startling sound effects
+- Gentle, appropriate sound effects
 - Optional background music
-- Medical tool sounds (heartbeat, beeps)
-- Success sounds for completed actions
+- Realistic medical tool sounds (heartbeat, beeps)
+- Positive feedback sounds for completed actions
 - Volume controls easily accessible
 
 ## 🔍 Success Metrics
