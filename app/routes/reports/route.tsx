@@ -23,9 +23,7 @@ export default function Reports() {
 						← Back to Clinic
 					</Link>
 					<div className="flex items-center justify-between">
-						<h1 className="text-4xl font-bold text-text-dark">
-							📊 My Reports
-						</h1>
+						<h1 className="text-4xl font-bold text-text-dark">📊 My Reports</h1>
 					</div>
 					<p className="mt-2 text-lg text-warm-gray">
 						Track your progress and see how many patients you've helped!

@@ -16,14 +16,18 @@ export default function TreatmentDetail() {
 	const { id } = useParams<{ id: string }>()
 	const navigate = useNavigate()
 	const getAppointment = useAppointmentsStore((state) => state.getAppointment)
-	const updateAppointment = useAppointmentsStore((state) => state.updateAppointment)
-	const completeAppointment = useAppointmentsStore((state) => state.completeAppointment)
+	const updateAppointment = useAppointmentsStore(
+		(state) => state.updateAppointment,
+	)
+	const completeAppointment = useAppointmentsStore(
+		(state) => state.completeAppointment,
+	)
 	const getPatient = usePatientsStore((state) => state.getPatient)
 	const updatePatient = usePatientsStore((state) => state.updatePatient)
-	
+
 	const appointment = getAppointment(id || '')
 	const patient = appointment ? getPatient(appointment.patientId) : null
-	
+
 	const [treatmentData, setTreatmentData] = useState({
 		condition: '',
 		treatment: '',
@@ -32,7 +36,7 @@ export default function TreatmentDetail() {
 		followUpNeeded: false,
 		followUpDate: '',
 	})
-	
+
 	const [currentStep, setCurrentStep] = useState(1)
 	const [vitals, setVitals] = useState({
 		temperature: '98.6',
@@ -73,12 +77,12 @@ export default function TreatmentDetail() {
 	}
 
 	const handleVitalsUpdate = (field: string, value: string) => {
-		setVitals(prev => ({ ...prev, [field]: value }))
+		setVitals((prev) => ({ ...prev, [field]: value }))
 	}
 
 	const handleTreatmentSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
-		
+
 		// Create medical record
 		const medicalRecord = {
 			id: generateId(),
@@ -104,11 +108,16 @@ export default function TreatmentDetail() {
 
 	const getStepTitle = () => {
 		switch (currentStep) {
-			case 1: return '🩺 Patient Check-in'
-			case 2: return '🌡️ Vitals & Assessment'
-			case 3: return '💊 Diagnosis & Treatment'
-			case 4: return '📋 Summary & Complete'
-			default: return 'Treatment'
+			case 1:
+				return '🩺 Patient Check-in'
+			case 2:
+				return '🌡️ Vitals & Assessment'
+			case 3:
+				return '💊 Diagnosis & Treatment'
+			case 4:
+				return '📋 Summary & Complete'
+			default:
+				return 'Treatment'
 		}
 	}
 
@@ -128,9 +137,7 @@ export default function TreatmentDetail() {
 							<h1 className="text-4xl font-bold text-text-dark">
 								{getStepTitle()}
 							</h1>
-							<p className="text-lg text-warm-gray">
-								Treating {patient.name}
-							</p>
+							<p className="text-lg text-warm-gray">Treating {patient.name}</p>
 						</div>
 						<div className="text-right">
 							<div className="text-lg font-semibold text-white">
@@ -145,11 +152,11 @@ export default function TreatmentDetail() {
 
 				{/* Progress Bar */}
 				<div className="mb-8">
-					<div className="flex items-center justify-between mb-2">
+					<div className="mb-2 flex items-center justify-between">
 						{[1, 2, 3, 4].map((step) => (
 							<div
 								key={step}
-								className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+								className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
 									currentStep >= step
 										? 'bg-doctor-green text-white'
 										: 'bg-soft-gray text-warm-gray'
@@ -159,7 +166,7 @@ export default function TreatmentDetail() {
 							</div>
 						))}
 					</div>
-					<div className="h-2 bg-soft-gray rounded-full overflow-hidden">
+					<div className="h-2 overflow-hidden rounded-full bg-soft-gray">
 						<div
 							className="h-full bg-doctor-green transition-all duration-300"
 							style={{ width: `${(currentStep / 4) * 100}%` }}
@@ -181,7 +188,8 @@ export default function TreatmentDetail() {
 								{patient.name}
 							</h2>
 							<div className="text-warm-gray">
-								Age {patient.age} • {patient.favoriteColor} • {patient.medicalHistory.length} previous visits
+								Age {patient.age} • {patient.favoriteColor} •{' '}
+								{patient.medicalHistory.length} previous visits
 							</div>
 						</div>
 						<div className="text-right">
@@ -213,13 +221,18 @@ export default function TreatmentDetail() {
 										</p>
 									</div>
 								</div>
-								
+
 								<div>
 									<label className="mb-2 block text-lg font-semibold text-text-dark">
 										How are you feeling today?
 									</label>
 									<div className="grid gap-3 sm:grid-cols-2">
-										{['Great!', 'A little sick', 'Not so good', 'Really sick'].map((feeling) => (
+										{[
+											'Great!',
+											'A little sick',
+											'Not so good',
+											'Really sick',
+										].map((feeling) => (
 											<button
 												key={feeling}
 												className="rounded-2xl border-2 border-medical-blue p-4 text-left transition-all duration-200 hover:border-doctor-blue hover:bg-medical-light"
@@ -255,12 +268,14 @@ export default function TreatmentDetail() {
 									<input
 										type="text"
 										value={vitals.temperature}
-										onChange={(e) => handleVitalsUpdate('temperature', e.target.value)}
+										onChange={(e) =>
+											handleVitalsUpdate('temperature', e.target.value)
+										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										placeholder="98.6"
 									/>
 								</div>
-								
+
 								<div>
 									<label className="mb-2 block text-lg font-semibold text-text-dark">
 										Weight (lbs)
@@ -268,12 +283,14 @@ export default function TreatmentDetail() {
 									<input
 										type="text"
 										value={vitals.weight}
-										onChange={(e) => handleVitalsUpdate('weight', e.target.value)}
+										onChange={(e) =>
+											handleVitalsUpdate('weight', e.target.value)
+										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										placeholder="Weight"
 									/>
 								</div>
-								
+
 								<div>
 									<label className="mb-2 block text-lg font-semibold text-text-dark">
 										Height (in)
@@ -281,12 +298,14 @@ export default function TreatmentDetail() {
 									<input
 										type="text"
 										value={vitals.height}
-										onChange={(e) => handleVitalsUpdate('height', e.target.value)}
+										onChange={(e) =>
+											handleVitalsUpdate('height', e.target.value)
+										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										placeholder="Height"
 									/>
 								</div>
-								
+
 								<div>
 									<label className="mb-2 block text-lg font-semibold text-text-dark">
 										Heart Rate
@@ -294,7 +313,9 @@ export default function TreatmentDetail() {
 									<input
 										type="text"
 										value={vitals.heartRate}
-										onChange={(e) => handleVitalsUpdate('heartRate', e.target.value)}
+										onChange={(e) =>
+											handleVitalsUpdate('heartRate', e.target.value)
+										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										placeholder="BPM"
 									/>
@@ -331,7 +352,10 @@ export default function TreatmentDetail() {
 									<select
 										value={treatmentData.condition}
 										onChange={(e) =>
-											setTreatmentData({ ...treatmentData, condition: e.target.value })
+											setTreatmentData({
+												...treatmentData,
+												condition: e.target.value,
+											})
 										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										required
@@ -352,7 +376,10 @@ export default function TreatmentDetail() {
 									<select
 										value={treatmentData.treatment}
 										onChange={(e) =>
-											setTreatmentData({ ...treatmentData, treatment: e.target.value })
+											setTreatmentData({
+												...treatmentData,
+												treatment: e.target.value,
+											})
 										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										required
@@ -373,7 +400,10 @@ export default function TreatmentDetail() {
 									<textarea
 										value={treatmentData.notes}
 										onChange={(e) =>
-											setTreatmentData({ ...treatmentData, notes: e.target.value })
+											setTreatmentData({
+												...treatmentData,
+												notes: e.target.value,
+											})
 										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										rows={4}
@@ -389,7 +419,10 @@ export default function TreatmentDetail() {
 										type="text"
 										value={treatmentData.prescription}
 										onChange={(e) =>
-											setTreatmentData({ ...treatmentData, prescription: e.target.value })
+											setTreatmentData({
+												...treatmentData,
+												prescription: e.target.value,
+											})
 										}
 										className="w-full rounded-2xl border-2 border-medical-blue px-4 py-3 text-lg focus:border-doctor-blue focus:outline-none"
 										placeholder="Magic bandaids, happy pills, etc."
@@ -424,26 +457,36 @@ export default function TreatmentDetail() {
 							<div className="space-y-6">
 								<div className="grid gap-4 md:grid-cols-2">
 									<div>
-										<h4 className="font-semibold text-text-dark mb-2">Patient</h4>
+										<h4 className="mb-2 font-semibold text-text-dark">
+											Patient
+										</h4>
 										<p className="text-warm-gray">{patient.name}</p>
 									</div>
 									<div>
-										<h4 className="font-semibold text-text-dark mb-2">Condition</h4>
+										<h4 className="mb-2 font-semibold text-text-dark">
+											Condition
+										</h4>
 										<p className="text-warm-gray">{treatmentData.condition}</p>
 									</div>
 									<div>
-										<h4 className="font-semibold text-text-dark mb-2">Treatment</h4>
+										<h4 className="mb-2 font-semibold text-text-dark">
+											Treatment
+										</h4>
 										<p className="text-warm-gray">{treatmentData.treatment}</p>
 									</div>
 									<div>
-										<h4 className="font-semibold text-text-dark mb-2">Prescription</h4>
-										<p className="text-warm-gray">{treatmentData.prescription || 'None'}</p>
+										<h4 className="mb-2 font-semibold text-text-dark">
+											Prescription
+										</h4>
+										<p className="text-warm-gray">
+											{treatmentData.prescription || 'None'}
+										</p>
 									</div>
 								</div>
 
 								{treatmentData.notes && (
 									<div>
-										<h4 className="font-semibold text-text-dark mb-2">Notes</h4>
+										<h4 className="mb-2 font-semibold text-text-dark">Notes</h4>
 										<div className="rounded-lg bg-medical-light p-4">
 											<p className="text-warm-gray">{treatmentData.notes}</p>
 										</div>
@@ -451,12 +494,13 @@ export default function TreatmentDetail() {
 								)}
 
 								<div className="rounded-lg bg-doctor-green/10 p-6 text-center">
-									<div className="text-4xl mb-2">🎉</div>
-									<h4 className="text-lg font-semibold text-doctor-green mb-2">
+									<div className="mb-2 text-4xl">🎉</div>
+									<h4 className="mb-2 text-lg font-semibold text-doctor-green">
 										Ready to complete the visit!
 									</h4>
 									<p className="text-warm-gray">
-										This will add the medical record to {patient.name}'s file and mark the appointment as completed.
+										This will add the medical record to {patient.name}'s file
+										and mark the appointment as completed.
 									</p>
 								</div>
 

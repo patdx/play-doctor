@@ -21,8 +21,8 @@ export default function Home() {
 						🏥 Play Doctor
 					</h1>
 					<p className="mb-8 text-xl text-white drop-shadow-md">
-						Welcome to your medical clinic! Help patients feel better
-						with treatments and friendly care.
+						Welcome to your medical clinic! Help patients feel better with
+						treatments and friendly care.
 					</p>
 				</div>
 
@@ -150,8 +150,8 @@ export default function Home() {
 				{/* Welcome Message */}
 				<div className="mt-8 text-center">
 					<p className="text-lg text-white/90">
-						👨‍⚕️ Ready to help patients? Let's start seeing patients
-						and make them feel better! 👩‍⚕️
+						👨‍⚕️ Ready to help patients? Let's start seeing patients and make them
+						feel better! 👩‍⚕️
 					</p>
 				</div>
 			</div>

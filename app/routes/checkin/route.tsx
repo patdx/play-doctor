@@ -6,7 +6,10 @@ import { usePatientsStore } from '~/stores/patients'
 export function meta() {
 	return [
 		{ title: 'Patient Check-in - Play Doctor' },
-		{ name: 'description', content: 'Check in patients and manage the waiting room' },
+		{
+			name: 'description',
+			content: 'Check in patients and manage the waiting room',
+		},
 	]
 }
 
@@ -21,7 +24,8 @@ export default function CheckIn() {
 		const filtered = appointments.filter((apt) => {
 			try {
 				const aptDate = apt.date instanceof Date ? apt.date : new Date(apt.date)
-				const selDate = selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+				const selDate =
+					selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
 				return aptDate.toDateString() === selDate.toDateString()
 			} catch (error) {
 				console.error('Error filtering appointments:', error)
@@ -32,12 +36,18 @@ export default function CheckIn() {
 	}, [appointments, selectedDate])
 
 	// Group appointments by status
-	const scheduledAppointments = todayAppointments.filter(apt => apt.status === 'scheduled')
-	const checkedInAppointments = todayAppointments.filter(apt => apt.status === 'checked-in')
-	const inProgressAppointments = todayAppointments.filter(apt => apt.status === 'in-progress')
+	const scheduledAppointments = todayAppointments.filter(
+		(apt) => apt.status === 'scheduled',
+	)
+	const checkedInAppointments = todayAppointments.filter(
+		(apt) => apt.status === 'checked-in',
+	)
+	const inProgressAppointments = todayAppointments.filter(
+		(apt) => apt.status === 'in-progress',
+	)
 
 	const getPatientById = (patientId: string) => {
-		return patients.find(p => p.id === patientId)
+		return patients.find((p) => p.id === patientId)
 	}
 
 	const getAppointmentColor = (type: string) => {
@@ -124,7 +134,10 @@ export default function CheckIn() {
 					</div>
 					<div className="rounded-2xl bg-white p-6 text-center shadow-lg">
 						<div className="text-3xl font-bold text-medical-blue">
-							{todayAppointments.filter(apt => apt.status === 'completed').length}
+							{
+								todayAppointments.filter((apt) => apt.status === 'completed')
+									.length
+							}
 						</div>
 						<div className="text-sm text-warm-gray">Completed</div>
 					</div>

@@ -7,14 +7,14 @@ const storage = {
 	getItem: (name: string) => {
 		const item = localStorage.getItem(name)
 		if (!item) return null
-		
+
 		try {
 			const parsed = JSON.parse(item)
 			// Convert date strings back to Date objects
 			if (parsed.state && parsed.state.bills) {
 				parsed.state.bills = parsed.state.bills.map((bill: any) => ({
 					...bill,
-					createdAt: new Date(bill.createdAt)
+					createdAt: new Date(bill.createdAt),
 				}))
 			}
 			return parsed
@@ -27,7 +27,7 @@ const storage = {
 	},
 	removeItem: (name: string) => {
 		localStorage.removeItem(name)
-	}
+	},
 }
 
 interface BillingStore {

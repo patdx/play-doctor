@@ -4,7 +4,9 @@ import type { QueueEntry } from '~/types/medical'
 
 interface QueueStore {
 	queue: QueueEntry[]
-	addToQueue: (entry: Omit<QueueEntry, 'id' | 'ticketNumber' | 'checkedInAt'>) => void
+	addToQueue: (
+		entry: Omit<QueueEntry, 'id' | 'ticketNumber' | 'checkedInAt'>,
+	) => void
 	removeFromQueue: (id: string) => void
 	updateQueueEntry: (id: string, updates: Partial<QueueEntry>) => void
 	getQueueEntries: () => QueueEntry[]
@@ -21,7 +23,8 @@ export const useQueueStore = create<QueueStore>()(
 
 			addToQueue: (entry) =>
 				set((state) => {
-					const nextTicketNumber = Math.max(...state.queue.map(q => q.ticketNumber), 0) + 1
+					const nextTicketNumber =
+						Math.max(...state.queue.map((q) => q.ticketNumber), 0) + 1
 					const newEntry: QueueEntry = {
 						...entry,
 						id: Date.now().toString() + Math.random().toString(36).substring(2),
@@ -31,8 +34,10 @@ export const useQueueStore = create<QueueStore>()(
 					return {
 						queue: [...state.queue, newEntry].sort((a, b) => {
 							// Emergency priority first, then by ticket number
-							if (a.priority === 'emergency' && b.priority !== 'emergency') return -1
-							if (a.priority !== 'emergency' && b.priority === 'emergency') return 1
+							if (a.priority === 'emergency' && b.priority !== 'emergency')
+								return -1
+							if (a.priority !== 'emergency' && b.priority === 'emergency')
+								return 1
 							if (a.priority === 'urgent' && b.priority === 'regular') return -1
 							if (a.priority === 'regular' && b.priority === 'urgent') return 1
 							return a.ticketNumber - b.ticketNumber
@@ -64,9 +69,11 @@ export const useQueueStore = create<QueueStore>()(
 
 			getEstimatedWaitTime: (ticketNumber) => {
 				const queue = get().queue
-				const entryIndex = queue.findIndex(entry => entry.ticketNumber === ticketNumber)
+				const entryIndex = queue.findIndex(
+					(entry) => entry.ticketNumber === ticketNumber,
+				)
 				if (entryIndex === -1) return 0
-				
+
 				// Calculate wait time based on average treatment time (15 minutes per patient)
 				const averageTreatmentTime = 15
 				return entryIndex * averageTreatmentTime

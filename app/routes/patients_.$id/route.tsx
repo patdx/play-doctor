@@ -9,7 +9,10 @@ import { generateId } from '~/stores/patients'
 export function meta({ params }: { params: { id: string } }) {
 	return [
 		{ title: `${params.id} - Patient Details - Play Doctor` },
-		{ name: 'description', content: 'View patient details and medical history' },
+		{
+			name: 'description',
+			content: 'View patient details and medical history',
+		},
 	]
 }
 
@@ -17,11 +20,15 @@ export default function PatientDetail() {
 	const { id } = useParams<{ id: string }>()
 	const getPatient = usePatientsStore((state) => state.getPatient)
 	const updatePatient = usePatientsStore((state) => state.updatePatient)
-	const getAppointmentsByPatient = useAppointmentsStore((state) => state.getAppointmentsByPatient)
-	
+	const getAppointmentsByPatient = useAppointmentsStore(
+		(state) => state.getAppointmentsByPatient,
+	)
+
 	const patient = getPatient(id || '')
-	const patientAppointments = patient ? getAppointmentsByPatient(patient.id) : []
-	
+	const patientAppointments = patient
+		? getAppointmentsByPatient(patient.id)
+		: []
+
 	const [showAddRecord, setShowAddRecord] = useState(false)
 	const [newRecord, setNewRecord] = useState({
 		condition: '',
@@ -98,7 +105,7 @@ export default function PatientDetail() {
 					<div className="flex flex-col items-center sm:flex-row sm:items-start">
 						{/* Patient Avatar */}
 						<div
-							className="mb-4 flex h-24 w-24 items-center justify-center rounded-full text-5xl shadow-lg sm:mb-0 sm:mr-8"
+							className="mb-4 flex h-24 w-24 items-center justify-center rounded-full text-5xl shadow-lg sm:mr-8 sm:mb-0"
 							style={{ backgroundColor: `${patient.favoriteColor}20` }}
 						>
 							{patient.avatar}
@@ -222,7 +229,8 @@ export default function PatientDetail() {
 								No Medical Records Yet
 							</h3>
 							<p className="text-warm-gray">
-								This patient hasn't had any visits yet. Add their first medical record!
+								This patient hasn't had any visits yet. Add their first medical
+								record!
 							</p>
 						</div>
 					) : (
@@ -294,8 +302,10 @@ export default function PatientDetail() {
 							{patientAppointments
 								.slice()
 								.sort((a, b) => {
-									const dateA = a.date instanceof Date ? a.date : new Date(a.date)
-									const dateB = b.date instanceof Date ? b.date : new Date(b.date)
+									const dateA =
+										a.date instanceof Date ? a.date : new Date(a.date)
+									const dateB =
+										b.date instanceof Date ? b.date : new Date(b.date)
 									return dateB.getTime() - dateA.getTime()
 								})
 								.map((appointment) => (
@@ -306,13 +316,20 @@ export default function PatientDetail() {
 										<div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
 											<div className="mb-4 sm:mb-0">
 												<h4 className="mb-2 text-xl font-bold text-text-dark">
-													{appointment.type.charAt(0).toUpperCase() + appointment.type.slice(1)}
+													{appointment.type.charAt(0).toUpperCase() +
+														appointment.type.slice(1)}
 												</h4>
 												<p className="mb-2 text-warm-gray">
-													<strong>Date:</strong> {(appointment.date instanceof Date ? appointment.date : new Date(appointment.date)).toLocaleDateString()} at {appointment.time}
+													<strong>Date:</strong>{' '}
+													{(appointment.date instanceof Date
+														? appointment.date
+														: new Date(appointment.date)
+													).toLocaleDateString()}{' '}
+													at {appointment.time}
 												</p>
 												<p className="mb-2 text-warm-gray">
-													<strong>Duration:</strong> {appointment.duration} minutes
+													<strong>Duration:</strong> {appointment.duration}{' '}
+													minutes
 												</p>
 												{appointment.notes && (
 													<p className="text-warm-gray">
@@ -321,13 +338,19 @@ export default function PatientDetail() {
 												)}
 											</div>
 											<div className="flex flex-col items-end gap-2">
-												<span className={`rounded-full px-3 py-1 text-xs font-medium ${
-													appointment.status === 'completed' ? 'bg-doctor-green text-white' :
-													appointment.status === 'in-progress' ? 'bg-doctor-blue text-white' :
-													appointment.status === 'checked-in' ? 'bg-happy-orange text-white' :
-													appointment.status === 'cancelled' ? 'bg-gentle-red text-white' :
-													'bg-soft-gray text-warm-gray'
-												}`}>
+												<span
+													className={`rounded-full px-3 py-1 text-xs font-medium ${
+														appointment.status === 'completed'
+															? 'bg-doctor-green text-white'
+															: appointment.status === 'in-progress'
+																? 'bg-doctor-blue text-white'
+																: appointment.status === 'checked-in'
+																	? 'bg-happy-orange text-white'
+																	: appointment.status === 'cancelled'
+																		? 'bg-gentle-red text-white'
+																		: 'bg-soft-gray text-warm-gray'
+													}`}
+												>
 													{appointment.status}
 												</span>
 												{appointment.status === 'scheduled' && (
@@ -338,7 +361,8 @@ export default function PatientDetail() {
 														Check-in →
 													</Link>
 												)}
-												{(appointment.status === 'checked-in' || appointment.status === 'in-progress') && (
+												{(appointment.status === 'checked-in' ||
+													appointment.status === 'in-progress') && (
 													<Link
 														to={`/treatment/${appointment.id}`}
 														className="text-sm text-doctor-green hover:text-doctor-green-dark"

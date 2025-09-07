@@ -25,7 +25,8 @@ export default function Appointments() {
 	// Filter appointments for selected date
 	const todayAppointments = appointments.filter((apt) => {
 		const aptDate = apt.date instanceof Date ? apt.date : new Date(apt.date)
-		const selDate = selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+		const selDate =
+			selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
 		return aptDate.toDateString() === selDate.toDateString()
 	})
 

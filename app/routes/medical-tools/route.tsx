@@ -122,8 +122,7 @@ export default function MedicalTools() {
 						🩺 Medical Tool Kit
 					</h1>
 					<p className="mt-2 text-lg text-warm-gray">
-						Choose your medical tools to examine and help patients feel
-						better!
+						Choose your medical tools to examine and help patients feel better!
 					</p>
 				</div>
 
@@ -255,11 +254,9 @@ export default function MedicalTools() {
 								</div>
 							)}
 						</div>
-
-						</div>
+					</div>
 				</div>
-
-				</div>
+			</div>
 		</div>
 	)
 }

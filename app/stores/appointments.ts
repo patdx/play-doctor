@@ -57,7 +57,8 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 			getAppointmentsByDate: (date) => {
 				const targetDate = safeDate(date).toDateString()
 				return get().appointments.filter(
-					(appointment) => safeDate(appointment.date).toDateString() === targetDate,
+					(appointment) =>
+						safeDate(appointment.date).toDateString() === targetDate,
 				)
 			},
 
@@ -110,7 +111,8 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 			getTodayAppointments: () => {
 				const today = new Date()
 				return get().appointments.filter(
-					(appointment) => safeDate(appointment.date).toDateString() === today.toDateString(),
+					(appointment) =>
+						safeDate(appointment.date).toDateString() === today.toDateString(),
 				)
 			},
 
@@ -118,8 +120,10 @@ export const useAppointmentsStore = create<AppointmentStore>()(
 				const today = new Date()
 				return get().appointments.filter(
 					(appointment) =>
-						safeDate(appointment.date).toDateString() === today.toDateString() &&
-						(appointment.status === 'checked-in' || appointment.status === 'in-progress'),
+						safeDate(appointment.date).toDateString() ===
+							today.toDateString() &&
+						(appointment.status === 'checked-in' ||
+							appointment.status === 'in-progress'),
 				)
 			},
 

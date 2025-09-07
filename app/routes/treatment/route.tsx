@@ -7,20 +7,26 @@ import type { Appointment } from '~/types/medical'
 export function meta() {
 	return [
 		{ title: 'Treatment Room - Play Doctor' },
-		{ name: 'description', content: 'Doctor\'s treatment room for seeing patients' },
+		{
+			name: 'description',
+			content: "Doctor's treatment room for seeing patients",
+		},
 	]
 }
 
 export default function TreatmentRoom() {
 	const appointments = useAppointmentsStore((state) => state.appointments)
-	const getReadyForTreatment = useAppointmentsStore((state) => state.getReadyForTreatment)
+	const getReadyForTreatment = useAppointmentsStore(
+		(state) => state.getReadyForTreatment,
+	)
 	const patients = usePatientsStore((state) => state.patients)
 	const [selectedDate, setSelectedDate] = useState(new Date())
 
 	// Get today's appointments
 	const todayAppointments = appointments.filter((apt) => {
 		const aptDate = apt.date instanceof Date ? apt.date : new Date(apt.date)
-		const selDate = selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+		const selDate =
+			selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
 		return aptDate.toDateString() === selDate.toDateString()
 	})
 
@@ -28,7 +34,7 @@ export default function TreatmentRoom() {
 	const readyForTreatment = getReadyForTreatment()
 
 	const getPatientById = (patientId: string) => {
-		return patients.find(p => p.id === patientId)
+		return patients.find((p) => p.id === patientId)
 	}
 
 	const getAppointmentColor = (type: string) => {
@@ -98,8 +104,10 @@ export default function TreatmentRoom() {
 								Welcome, Doctor!
 							</h2>
 							<p className="text-warm-gray">
-								You have {readyForTreatment.length} patient{readyForTreatment.length !== 1 ? 's' : ''} ready to see today.
-								{readyForTreatment.length === 0 && ' Take a break or check the waiting room!'}
+								You have {readyForTreatment.length} patient
+								{readyForTreatment.length !== 1 ? 's' : ''} ready to see today.
+								{readyForTreatment.length === 0 &&
+									' Take a break or check the waiting room!'}
 							</p>
 						</div>
 					</div>
@@ -118,7 +126,8 @@ export default function TreatmentRoom() {
 									No Patients Ready
 								</h3>
 								<p className="mb-6 text-warm-gray">
-									No patients are currently ready for treatment. Check the waiting room or see if anyone needs to be checked in.
+									No patients are currently ready for treatment. Check the
+									waiting room or see if anyone needs to be checked in.
 								</p>
 								<div className="flex justify-center gap-4">
 									<Link
@@ -139,7 +148,8 @@ export default function TreatmentRoom() {
 							readyForTreatment
 								.sort((a, b) => {
 									// Emergency appointments first, then by time
-									if (a.type === 'emergency' && b.type !== 'emergency') return -1
+									if (a.type === 'emergency' && b.type !== 'emergency')
+										return -1
 									if (a.type !== 'emergency' && b.type === 'emergency') return 1
 									return a.time.localeCompare(b.time)
 								})
@@ -158,11 +168,16 @@ export default function TreatmentRoom() {
 													{appointment.patientName}
 												</h3>
 												<div className="mb-2 text-sm text-warm-gray">
-													Age {patient?.age || 'Unknown'} • {patient?.favoriteColor || 'Unknown'}
+													Age {patient?.age || 'Unknown'} •{' '}
+													{patient?.favoriteColor || 'Unknown'}
 												</div>
 												<div className="mb-4">
-													<span className={`rounded-full px-3 py-1 text-xs font-medium ${getStatusColor(appointment.status)}`}>
-														{appointment.status === 'checked-in' ? 'Waiting' : 'In Progress'}
+													<span
+														className={`rounded-full px-3 py-1 text-xs font-medium ${getStatusColor(appointment.status)}`}
+													>
+														{appointment.status === 'checked-in'
+															? 'Waiting'
+															: 'In Progress'}
 													</span>
 												</div>
 												<div className="mb-4 text-sm text-warm-gray">
@@ -178,7 +193,9 @@ export default function TreatmentRoom() {
 													to={`/treatment/${appointment.id}`}
 													className="w-full rounded-full bg-doctor-green px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-doctor-green-dark"
 												>
-													{appointment.status === 'in-progress' ? 'Continue Treatment' : 'Start Treatment'}
+													{appointment.status === 'in-progress'
+														? 'Continue Treatment'
+														: 'Start Treatment'}
 												</Link>
 											</div>
 										</div>
@@ -197,24 +214,38 @@ export default function TreatmentRoom() {
 						<div className="space-y-3">
 							<div className="flex justify-between">
 								<span className="text-warm-gray">Total Appointments:</span>
-								<span className="font-bold text-text-dark">{todayAppointments.length}</span>
+								<span className="font-bold text-text-dark">
+									{todayAppointments.length}
+								</span>
 							</div>
 							<div className="flex justify-between">
 								<span className="text-warm-gray">Completed:</span>
 								<span className="font-bold text-doctor-green">
-									{todayAppointments.filter(apt => apt.status === 'completed').length}
+									{
+										todayAppointments.filter(
+											(apt) => apt.status === 'completed',
+										).length
+									}
 								</span>
 							</div>
 							<div className="flex justify-between">
 								<span className="text-warm-gray">In Progress:</span>
 								<span className="font-bold text-doctor-blue">
-									{todayAppointments.filter(apt => apt.status === 'in-progress').length}
+									{
+										todayAppointments.filter(
+											(apt) => apt.status === 'in-progress',
+										).length
+									}
 								</span>
 							</div>
 							<div className="flex justify-between">
 								<span className="text-warm-gray">Waiting:</span>
 								<span className="font-bold text-happy-orange">
-									{todayAppointments.filter(apt => apt.status === 'checked-in').length}
+									{
+										todayAppointments.filter(
+											(apt) => apt.status === 'checked-in',
+										).length
+									}
 								</span>
 							</div>
 						</div>
@@ -225,22 +256,28 @@ export default function TreatmentRoom() {
 							🚨 Emergency Cases
 						</h3>
 						<div className="space-y-3">
-							{todayAppointments.filter(apt => apt.type === 'emergency').length === 0 ? (
+							{todayAppointments.filter((apt) => apt.type === 'emergency')
+								.length === 0 ? (
 								<div className="text-center text-warm-gray">
 									No emergency cases today
 								</div>
 							) : (
 								todayAppointments
-									.filter(apt => apt.type === 'emergency')
+									.filter((apt) => apt.type === 'emergency')
 									.map((apt) => {
 										const patient = getPatientById(apt.patientId)
 										return (
-											<div key={apt.id} className="flex items-center justify-between rounded-lg bg-gentle-red/10 p-3">
+											<div
+												key={apt.id}
+												className="flex items-center justify-between rounded-lg bg-gentle-red/10 p-3"
+											>
 												<div className="flex items-center gap-2">
 													<span>{patient?.avatar || '👤'}</span>
 													<span className="font-medium">{apt.patientName}</span>
 												</div>
-												<span className={`rounded-full px-2 py-1 text-xs ${getStatusColor(apt.status)}`}>
+												<span
+													className={`rounded-full px-2 py-1 text-xs ${getStatusColor(apt.status)}`}
+												>
 													{apt.status}
 												</span>
 											</div>

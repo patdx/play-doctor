@@ -24,9 +24,7 @@ export default function Settings() {
 						← Back to Clinic
 					</Link>
 					<div className="flex items-center justify-between">
-						<h1 className="text-4xl font-bold text-text-dark">
-							⚙️ Settings
-						</h1>
+						<h1 className="text-4xl font-bold text-text-dark">⚙️ Settings</h1>
 					</div>
 					<p className="mt-2 text-lg text-warm-gray">
 						Customize your clinic and make it your own!
@@ -42,9 +40,7 @@ export default function Settings() {
 						<div className="space-y-4">
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Sound Effects
-									</h3>
+									<h3 className="font-medium text-text-dark">Sound Effects</h3>
 									<p className="text-sm text-warm-gray">
 										Hear fun sounds when using medical tools
 									</p>
@@ -68,9 +64,7 @@ export default function Settings() {
 							</div>
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Volume
-									</h3>
+									<h3 className="font-medium text-text-dark">Volume</h3>
 									<p className="text-sm text-warm-gray">
 										How loud should the sounds be?
 									</p>
@@ -94,9 +88,7 @@ export default function Settings() {
 						<div className="space-y-4">
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Clinic Name
-									</h3>
+									<h3 className="font-medium text-text-dark">Clinic Name</h3>
 									<p className="text-sm text-warm-gray">
 										Give your clinic a special name
 									</p>
@@ -108,9 +100,7 @@ export default function Settings() {
 							</div>
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Doctor Name
-									</h3>
+									<h3 className="font-medium text-text-dark">Doctor Name</h3>
 									<p className="text-sm text-warm-gray">
 										What should patients call you?
 									</p>
@@ -122,9 +112,7 @@ export default function Settings() {
 							</div>
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Theme Color
-									</h3>
+									<h3 className="font-medium text-text-dark">Theme Color</h3>
 									<p className="text-sm text-warm-gray">
 										Choose your favorite clinic color
 									</p>
@@ -162,9 +150,7 @@ export default function Settings() {
 							</div>
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Tutorial Hints
-									</h3>
+									<h3 className="font-medium text-text-dark">Tutorial Hints</h3>
 									<p className="text-sm text-warm-gray">
 										Show helpful tips while playing
 									</p>
@@ -175,9 +161,7 @@ export default function Settings() {
 							</div>
 							<div className="flex items-center justify-between">
 								<div>
-									<h3 className="font-medium text-text-dark">
-										Auto-Save
-									</h3>
+									<h3 className="font-medium text-text-dark">Auto-Save</h3>
 									<p className="text-sm text-warm-gray">
 										Automatically save your progress
 									</p>
@@ -201,7 +185,7 @@ export default function Settings() {
 							<button className="w-full rounded-xl border-2 border-soft-gray py-3 font-semibold text-text-dark transition-colors hover:bg-medical-light">
 								🔄 Reset to Default
 							</button>
-							<button className="w-full rounded-xl border-2 border-gentle-red py-3 font-semibold text-gentle-red transition-colors hover:bg-gentle-red-light">
+							<button className="hover:bg-gentle-red-light w-full rounded-xl border-2 border-gentle-red py-3 font-semibold text-gentle-red transition-colors">
 								🗑️ Clear All Data
 							</button>
 						</div>
@@ -224,8 +208,8 @@ export default function Settings() {
 						<div className="rounded-lg bg-medical-light p-4">
 							<div className="mb-2 text-2xl">🏨</div>
 							<p className="text-sm text-text-dark">
-								Personalizing your clinic name makes it feel like your very
-								own hospital!
+								Personalizing your clinic name makes it feel like your very own
+								hospital!
 							</p>
 						</div>
 					</div>
